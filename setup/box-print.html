@@ -68,18 +68,21 @@
 
   /* back (base): one row - SCAN ME turned upright on the left, the QR, the guide caption on
      the right - then the account line and the brand line. All body text at the lid's 10pt. */
-  .back { width: calc(var(--panel-back) + 2 * var(--bleed)); height: calc(var(--panel-back) + 2 * var(--bleed)); padding: calc(var(--bleed) + 3.2mm) calc(var(--bleed) + 2.8mm); justify-content: space-between; }
+  .back { width: calc(var(--panel-back) + 2 * var(--bleed)); height: calc(var(--panel-back) + 2 * var(--bleed)); padding: calc(var(--bleed) + 3mm) calc(var(--bleed) + 2.4mm); justify-content: space-between; }
   .back .cut { width: var(--panel-back); height: var(--panel-back); }
   .back .caption { font-size: 10pt; font-weight: 700; line-height: 1.2; margin: 0; text-wrap: balance; }
   .back .row { display: flex; align-items: center; justify-content: center; gap: 2mm; width: 100%; }
   /* Vertical text, kept exactly the QR's height (text-align centres along the vertical inline
      axis) so it never runs past the code into the text above or below. */
-  .back .scan { writing-mode: vertical-rl; transform: rotate(180deg); height: 25mm; text-align: center; font-size: 12pt; font-weight: 800; letter-spacing: .08em; line-height: 1; flex: none; }
-  .back .qr { width: 25mm; height: 25mm; display: block; flex: none; }
+  .back .scan { writing-mode: vertical-rl; transform: rotate(180deg); height: 23mm; text-align: center; font-size: 12pt; font-weight: 800; letter-spacing: .08em; line-height: 1; flex: none; }
+  .back .qr { width: 23mm; height: 23mm; display: block; flex: none; }
   /* Same size and weight as the caption above the QR: the account line leads straight into
      the address on the line below it. */
   .back .sub { font-size: 10pt; font-weight: 700; line-height: 1.2; color: var(--ink); margin: 0; text-wrap: balance; }
-  .back .brand { font-size: 10pt; font-weight: 700; line-height: 1.2; color: var(--ink); letter-spacing: .01em; }
+  .back .brand { font-size: 10pt; font-weight: 700; line-height: 1.2; color: var(--ink); letter-spacing: .01em; margin-top: 0.8mm; }
+  /* The account block sits in a rounded frame in the green of the logo's "r" (the letter is a
+     gradient from about #78e020 down to #38c818; this is its mid-tone). */
+  .back .account { --logo-green: #58cc22; width: 100%; border: 0.5mm solid var(--logo-green); border-radius: 3mm; padding: 1.2mm 1mm 1.4mm; }
 
   @media print {
     html, body { background: none; }
@@ -118,8 +121,10 @@
         <div class="scan">SCAN ME</div>
         <img class="qr" src="qr-code.svg" alt="QR code linking to the setup guide">
       </div>
-      <p class="sub">Create a WordStar account to follow your child's journey:</p>
-      <div class="brand">wordstar.providenthq.com</div>
+      <div class="account">
+        <p class="sub">Create a WordStar account to follow your child's journey:</p>
+        <div class="brand">wordstar.providenthq.com</div>
+      </div>
     </div>
   </div>
 
