@@ -56,7 +56,9 @@
   .back { padding: calc(var(--bleed) + 3.5mm) calc(var(--bleed) + 3mm); justify-content: space-between; }
   .back .caption { font-size: 10pt; font-weight: 700; line-height: 1.2; margin: 0; text-wrap: balance; }
   .back .row { display: flex; align-items: center; justify-content: center; gap: 2mm; width: 100%; }
-  .back .scan { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 15pt; font-weight: 800; letter-spacing: .1em; line-height: 1; flex: none; }
+  /* Vertical text, kept exactly the QR's height (text-align centres along the vertical inline
+     axis) so it never runs past the code into the text above or below. */
+  .back .scan { writing-mode: vertical-rl; transform: rotate(180deg); height: 25mm; text-align: center; font-size: 12pt; font-weight: 800; letter-spacing: .08em; line-height: 1; flex: none; }
   .back .qr { width: 25mm; height: 25mm; display: block; flex: none; }
   .back .sub { font-size: 10pt; font-style: italic; line-height: 1.25; color: var(--muted); margin: 0; text-wrap: balance; }
   .back .brand { display: flex; align-items: center; justify-content: center; gap: 1.6mm; font-size: 7pt; color: var(--muted); font-weight: 700; line-height: 1; }
