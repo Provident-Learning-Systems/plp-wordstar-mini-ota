@@ -1,27 +1,33 @@
-# WordStar Mini OTA artifacts
+# WordStar Mini - published updates and setup guide
 
-This repo holds nothing but published firmware updates for WordStar Mini
-devices: `manifest.json` (the current version, its binary URL, and its MD5
-checksum) plus one `.bin` per released version. It is intentionally public
-and separate from the private firmware source in `plp-wordstar-mini` -
-publishing a compiled binary here does not expose any source code.
+This repo is intentionally public and separate from the private firmware
+source in `plp-wordstar-mini`. It holds only what shipped devices fetch, and
+the parent-facing setup guide:
 
-Devices with home WiFi configured fetch `manifest.json` on every cold boot
-(or on demand from the on-device WiFi panel's "Check for updates now"), and
-if its `version` differs from what they're running, download and verify the
-referenced `.bin` before installing it. See
-`plp-wordstar-mini`'s `docs/firmware-setup-and-device-bringup.md` (section
-10) for the full OTA design, including why plain HTTPS with no auth is an
-acceptable tradeoff here (integrity is verified via the MD5 check, not TLS
-trust), and how to publish a new release.
+| Path | What it is |
+|---|---|
+| `manifest.json` | Current firmware version, its `.bin` URL and MD5. Devices with home WiFi check it roughly every 12 hours (and on demand from the WiFi panel's "Check for updates now"). |
+| `WordStarMini-<version>.bin` | One application image per released version. |
+| `content/manifest.txt`, `content/phonics_list.csv`, `content/audio/*.pcm` | The phonics content. Devices on 2026.09.18.8+ fetch any file that is missing from their SD card or whose MD5 changed, during the same check. |
+| `setup/index.html` | The **setup guide** for families, served by GitHub Pages at <https://provident-learning-systems.github.io/plp-wordstar-mini-ota/setup/> - this is what the QR code in the box points to. Its footer shows which firmware it was written for and, live from `manifest.json`, the latest published firmware. |
 
-## Publishing a new release
+Publishing a compiled binary or the audio here does not expose any source
+code. Plain HTTPS with no auth is an acceptable tradeoff for this content:
+devices verify every download against its MD5 before installing it (see
+`plp-wordstar-mini`'s `docs/firmware-setup-and-device-bringup.md`, section
+10, for the full design).
 
-1. In `plp-wordstar-mini`, bump `firmware/WordStarMini/version.h`'s
-   `FIRMWARE_VERSION` and compile with the `default_8MB` FQBN.
-2. Compute the MD5 of the resulting `WordStarMini.ino.bin` (not the merged
-   image - just the application binary).
-3. Add the renamed `.bin` (e.g. `WordStarMini-<version>.bin`) to this repo
-   and update `manifest.json` to point at it with the new version and MD5.
-4. Commit and push. Devices pick it up on their next cold boot or an
-   on-demand check.
+## Publishing
+
+All of these are run from the `plp-wordstar-mini` checkout; each ends with a
+commit + push here.
+
+- **Firmware**: bump `firmware/WordStarMini/version.h`, compile with the
+  `PartitionScheme=custom` FQBN, copy the resulting `WordStarMini.ino.bin` here
+  as `WordStarMini-<version>.bin`, and point `manifest.json` at it with its MD5.
+- **Sounds / phonics list**: `firmware/tools/publish_content.sh` regenerates
+  `content/` and `content/manifest.txt`.
+- **Setup guide**: edit `setup/index.html`. If a release changes anything the
+  guide shows (button behaviour, screen layouts, panel wording), bump the
+  guide revision and the "written for firmware" version in its footer so the
+  two stay in step.
