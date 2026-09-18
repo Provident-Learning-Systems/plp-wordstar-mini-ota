@@ -13,6 +13,11 @@
     --panel: 60mm;
     --radius: 8mm;
     --bleed: 2mm;      /* extra printed area outside the cut line, trimmed away */
+    /* Lid only: a notch on the right edge clears the case's hinge/latch - 5 mm deep, 20 mm
+       tall, vertically centred (20 / 20 / 20 along that edge). Drawn into the front card's
+       cut line by the SVG below; keep these in step with its path if the case changes. */
+    --notch-d: 5mm;
+    --notch-h: 20mm;
     --ink: #23211d;
     --muted: #6d675d;
     --paper: #ffffff;
@@ -45,9 +50,16 @@
   .mark.tl::after, .mark.tr::after { bottom: 0; width: 0.2mm; height: 4mm; } .mark.tl::after { right: 0; } .mark.tr::after { left: 0; }
   .mark.bl::after, .mark.br::after { top: 0; width: 0.2mm; height: 4mm; } .mark.bl::after { right: 0; } .mark.br::after { left: 0; }
 
-  /* front (lid): the logo runs almost edge to edge, with a 4 mm margin to the cut line */
-  .front { padding: calc(var(--bleed) + 4mm); }
-  .front .logo { width: 52mm; height: auto; display: block; }
+  /* front (lid): the logo runs almost edge to edge, with a 4 mm margin to the cut line - and
+     the artwork keeps clear of the notch by carrying an extra notch-width of padding on the
+     right, so the whole block sits a little left of centre, centred on the usable area. */
+  .front { padding: calc(var(--bleed) + 4mm) calc(var(--bleed) + 4mm + var(--notch-d)) calc(var(--bleed) + 4mm) calc(var(--bleed) + 4mm); }
+  .front .logo { width: 46mm; height: auto; display: block; }
+  /* The lid's cut line, as an SVG path in mm (a 60 x 60 rounded square with the notch), drawn
+     over the card in place of the plain dashed border the back uses. */
+  .front .cutsvg { position: absolute; left: var(--bleed); top: var(--bleed); width: var(--panel); height: var(--panel); overflow: visible; pointer-events: none; }
+  .front .cutsvg path { fill: none; stroke: #b8b3a8; stroke-width: 0.2; stroke-dasharray: 1 0.8; }
+  .front .cutsvg line { stroke: #000; stroke-width: 0.2; }
   .front .by { margin-top: 2mm; font-size: 8pt; font-weight: 700; letter-spacing: .3em; color: var(--muted); }
   .front .tag { margin: 4mm 0 0; font-size: 10pt; font-weight: 800; line-height: 1.25; text-wrap: balance; }
 
@@ -79,7 +91,12 @@
     <div class="label">Front (lid)</div>
     <div class="mark tl"></div><div class="mark tr"></div><div class="mark bl"></div><div class="mark br"></div>
     <div class="card front">
-      <div class="cut"></div>
+      <!-- 60 x 60 mm, r = 8 mm, with the 5 x 20 mm notch centred on the right edge (y 20-40).
+           Short ticks beyond the edge mark the notch's top and bottom for cutting. -->
+      <svg class="cutsvg" viewBox="0 0 60 60" aria-hidden="true">
+        <path d="M8 0 H52 A8 8 0 0 1 60 8 V20 H55 V40 H60 V52 A8 8 0 0 1 52 60 H8 A8 8 0 0 1 0 52 V8 A8 8 0 0 1 8 0 Z"/>
+        <line x1="61" y1="20" x2="64" y2="20"/><line x1="61" y1="40" x2="64" y2="40"/>
+      </svg>
       <img class="logo" src="wordstar-mini-logo.png" alt="WordStar Mini">
       <div class="by">BY PROVIDENT</div>
       <p class="tag">Support your child's phonics practice, anywhere, anytime.</p>
