@@ -77,7 +77,9 @@
   .back .scan { writing-mode: vertical-rl; transform: rotate(180deg); height: 25mm; text-align: center; font-size: 12pt; font-weight: 800; letter-spacing: .08em; line-height: 1; flex: none; }
   .back .qr { width: 25mm; height: 25mm; display: block; flex: none; }
   .back .sub { font-size: 10pt; font-style: italic; line-height: 1.25; color: var(--muted); margin: 0; text-wrap: balance; }
-  .back .brand { display: flex; align-items: center; justify-content: center; gap: 1.6mm; font-size: 9pt; color: var(--muted); font-weight: 700; line-height: 1; }
+  /* Bottom-aligned so the URL sits on the logo's baseline rather than floating mid-height. */
+  .back .brand { display: flex; align-items: flex-end; justify-content: center; gap: 1.6mm; font-size: 9pt; color: var(--muted); font-weight: 700; line-height: 1; }
+  .back .brand span { padding-bottom: 0.9mm; }
   .back .brand-logo { height: 7mm; width: auto; display: block; }
 
   @media print {
