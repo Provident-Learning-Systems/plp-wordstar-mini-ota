@@ -18,6 +18,9 @@
        cut line by the SVG below; keep these in step with its path if the case changes. */
     --notch-d: 5mm;
     --notch-h: 20mm;
+    /* The base's insert is 1 mm smaller overall (0.5 mm a side): the lid card is deliberately
+       a snug fit so the lid clicks shut, but the same size in the base bows the paper. */
+    --panel-back: 59mm;
     --ink: #23211d;
     --muted: #6d675d;
     --paper: #ffffff;
@@ -65,7 +68,8 @@
 
   /* back (base): one row - SCAN ME turned upright on the left, the QR, the guide caption on
      the right - then the account line and the brand line. All body text at the lid's 10pt. */
-  .back { padding: calc(var(--bleed) + 3.5mm) calc(var(--bleed) + 3mm); justify-content: space-between; }
+  .back { width: calc(var(--panel-back) + 2 * var(--bleed)); height: calc(var(--panel-back) + 2 * var(--bleed)); padding: calc(var(--bleed) + 3.2mm) calc(var(--bleed) + 2.8mm); justify-content: space-between; }
+  .back .cut { width: var(--panel-back); height: var(--panel-back); }
   .back .caption { font-size: 10pt; font-weight: 700; line-height: 1.2; margin: 0; text-wrap: balance; }
   .back .row { display: flex; align-items: center; justify-content: center; gap: 2mm; width: 100%; }
   /* Vertical text, kept exactly the QR's height (text-align centres along the vertical inline
@@ -84,11 +88,11 @@
 </style>
 </head>
 <body>
-<p class="howto">Box inserts for the 60 &times; 60 mm case. Print at <b>100% scale</b> (no "fit to page"), A4 landscape. Cut along the dashed line - the white outside it is bleed. Panel size and corner radius are the <code>--panel</code> / <code>--radius</code> values at the top of this file.</p>
+<p class="howto">Box inserts for the 60 &times; 60 mm case: the lid card is 60 mm (a snug fit, so the lid clicks), the base card 59 mm (so the paper doesn't bow). Print at <b>100% scale</b> (no "fit to page"), A4 landscape. Cut along the dashed lines - the white outside them is bleed. Sizes and corner radius are the <code>--panel</code> / <code>--panel-back</code> / <code>--radius</code> values at the top of this file.</p>
 <div class="sheet">
 
   <div class="card-wrap">
-    <div class="label">Front (lid)</div>
+    <div class="label">Front (lid) &middot; 60 mm</div>
     <div class="mark tl"></div><div class="mark tr"></div><div class="mark bl"></div><div class="mark br"></div>
     <div class="card front">
       <!-- 60 x 60 mm, r = 8 mm, with the 5 x 20 mm notch centred on the right edge (y 20-40).
@@ -104,7 +108,7 @@
   </div>
 
   <div class="card-wrap">
-    <div class="label">Back (base)</div>
+    <div class="label">Back (base) &middot; 59 mm</div>
     <div class="mark tl"></div><div class="mark tr"></div><div class="mark bl"></div><div class="mark br"></div>
     <div class="card back">
       <div class="cut"></div>
