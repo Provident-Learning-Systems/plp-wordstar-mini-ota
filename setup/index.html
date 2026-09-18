@@ -26,6 +26,7 @@
     --paper: #d6d8d2;
     --ink: #2a2a2a;
     --btn-ink: #3a3835;
+    --ok: #3f9a43;       /* the green of the ticks in the header chips */
     color-scheme: light dark;
   }
   @media (prefers-color-scheme: dark) {
@@ -33,6 +34,7 @@
       --bg: #17191c; --surface: #1f2226; --surface-2: #2a2e33; --text: #ebe8e1; --muted: #9c968b;
       --border: #363a40; --accent: #79b2c0; --accent-soft: #223740; --hint: #e3a352; --hint-soft: #3d2c14;
       --shell: #ecebe6; --shell-side: #cfccc4; --shell-dark: #b8b5ac; --shell-edge: #a5a299; --paper: #cdd0ca; --ink: #262626;
+      --ok: #7fd184;
     }
   }
   * { box-sizing: border-box; }
@@ -53,7 +55,8 @@
   header .by a:hover { color: var(--accent); border-color: var(--accent); }
   header h1 { font-size: clamp(28px, 6vw, 38px); font-weight: 800; letter-spacing: -0.01em; margin: 0 0 12px; text-wrap: balance; }
   .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 0; }
-  .chip { background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 5px 12px; font-size: 14px; color: var(--muted); }
+  .chip { display: inline-flex; align-items: center; gap: 6px; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 5px 12px 5px 9px; font-size: 14px; color: var(--muted); }
+  .chip svg { width: 15px; height: 15px; flex: none; color: var(--ok); }
 
   nav.toc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 0 0 30px; }
   nav.toc a { display: block; text-decoration: none; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 12px 12px 10px; }
@@ -177,7 +180,12 @@
   <img class="logo" src="wordstar-mini-logo.png" alt="WordStar Mini" width="800" height="420">
   <p class="by">By <a href="https://providenthq.com" target="_blank" rel="noopener">Provident</a></p>
   <h1>Setting up and using your WordStar Mini</h1>
-  <div class="chips"><span class="chip">Nothing to install</span><span class="chip">Works offline</span><span class="chip">Charges over USB-C</span></div>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-tick" viewBox="0 0 16 16"><path d="M3 8.5 6.5 12 13 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol></svg>
+  <div class="chips">
+    <span class="chip"><svg aria-hidden="true"><use href="#i-tick"/></svg>Ready to use</span>
+    <span class="chip"><svg aria-hidden="true"><use href="#i-tick"/></svg>Works offline</span>
+    <span class="chip"><svg aria-hidden="true"><use href="#i-tick"/></svg>Charges over USB-C</span>
+  </div>
 </header>
 
 <nav class="toc" aria-label="Sections">
