@@ -19,10 +19,11 @@
     --accent-soft: #dcecef;
     --hint: #d98b2b;
     --hint-soft: #fbead3;
-    --device: #f4f3ef;
-    --device-side: #d9d7d0;
-    --device-edge: #c4c1b8;
-    --paper: #d7d9d3;
+    --shell: #f5f4f0;
+    --shell-side: #dedcd5;
+    --shell-dark: #c9c6bd;
+    --shell-edge: #bab7ae;
+    --paper: #d6d8d2;
     --ink: #2a2a2a;
     color-scheme: light dark;
   }
@@ -30,7 +31,7 @@
     :root {
       --bg: #17191c; --surface: #1f2226; --surface-2: #2a2e33; --text: #ebe8e1; --muted: #9c968b;
       --border: #363a40; --accent: #79b2c0; --accent-soft: #223740; --hint: #e3a352; --hint-soft: #3d2c14;
-      --device: #e9e7e2; --device-side: #c9c6be; --device-edge: #b1ada4; --paper: #cfd1cb; --ink: #262626;
+      --shell: #ecebe6; --shell-side: #cfccc4; --shell-dark: #b8b5ac; --shell-edge: #a5a299; --paper: #cdd0ca; --ink: #262626;
     }
   }
   * { box-sizing: border-box; }
@@ -39,12 +40,17 @@
     background: var(--bg); color: var(--text);
     font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     font-size: 17px; line-height: 1.55;
-    padding: 0 18px; padding-block: 28px 56px;
+    padding: 0 18px; padding-block: 24px 56px;
   }
   .wrap { max-width: 720px; margin: 0 auto; }
-  header h1 { font-size: clamp(30px, 6vw, 40px); font-weight: 800; letter-spacing: -0.01em; margin: 0 0 6px; text-wrap: balance; }
-  header p.lead { color: var(--muted); font-size: 18px; margin: 0 0 12px; max-width: 46ch; }
-  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 30px; }
+
+  header { text-align: center; margin-bottom: 26px; }
+  header .logo { width: min(340px, 78vw); height: auto; display: block; margin: 0 auto 4px; }
+  header .by { margin: 0 0 18px; color: var(--muted); font-size: 15px; letter-spacing: .04em; }
+  header .by a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--border); }
+  header .by a:hover { color: var(--accent); border-color: var(--accent); }
+  header h1 { font-size: clamp(28px, 6vw, 38px); font-weight: 800; letter-spacing: -0.01em; margin: 0 0 12px; text-wrap: balance; }
+  .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 0; }
   .chip { background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 5px 12px; font-size: 14px; color: var(--muted); }
 
   ol.steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 22px; }
@@ -60,31 +66,41 @@
   .todo b { font-weight: 800; }
   .note { background: var(--hint-soft); border-radius: 10px; padding: 10px 14px; font-size: 15px; margin-top: 14px; }
   .note b { color: var(--hint); }
-  kbd.btn { display: inline-flex; align-items: center; gap: 5px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; padding: 1px 8px; font: inherit; font-weight: 800; font-size: 15px; }
-  kbd.btn svg { width: 15px; height: 15px; }
+  /* Inline button chips use the same glyphs the device has printed on its buttons. */
+  kbd.btn { display: inline-flex; align-items: center; gap: 6px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; padding: 1px 9px 1px 6px; font: inherit; font-weight: 800; font-size: 15px; vertical-align: -1px; }
+  kbd.btn svg { width: 17px; height: 17px; }
   code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.92em; background: var(--surface-2); padding: 1px 6px; border-radius: 6px; }
+  svg.glyph { fill: currentColor; }
 
-  /* ---- 3D device ---- */
-  .scene { display: flex; justify-content: center; align-items: center; height: 300px; margin: 14px 0 6px; perspective: 900px; touch-action: none; cursor: grab; user-select: none; }
+  /* ---- 3D device (portrait body, matched to the real unit) ---- */
+  .scene { display: flex; justify-content: center; align-items: center; height: 340px; margin: 14px 0 4px; perspective: 1000px; touch-action: none; cursor: grab; user-select: none; }
   .scene:active { cursor: grabbing; }
-  .device { position: relative; width: 250px; height: 190px; transform-style: preserve-3d; transform: rotateX(-14deg) rotateY(-32deg); transition: transform .08s linear; }
+  .device { position: relative; width: 190px; height: 250px; transform-style: preserve-3d; transition: transform .08s linear; }
   .face { position: absolute; left: 0; top: 0; }
-  .front  { width: 250px; height: 190px; background: var(--device); border-radius: 18px; transform: translateZ(19px); box-shadow: inset 0 0 0 1px var(--device-edge); }
-  .back   { width: 250px; height: 190px; background: var(--device-side); border-radius: 18px; transform: translateZ(-19px) rotateY(180deg); }
-  .side   { background: var(--device-side); }
-  .right  { width: 38px; height: 190px; transform: rotateY(90deg) translateZ(231px); border-radius: 0 6px 6px 0; box-shadow: inset 0 0 0 1px var(--device-edge); }
-  .left   { width: 38px; height: 190px; transform: rotateY(-90deg) translateZ(19px); }
-  .top    { width: 250px; height: 38px; transform: rotateX(90deg) translateZ(19px); }
-  .bottom { width: 250px; height: 38px; transform: rotateX(-90deg) translateZ(171px); box-shadow: inset 0 0 0 1px var(--device-edge); }
-  .screen { position: absolute; left: 22px; top: 18px; width: 152px; height: 152px; background: var(--paper); border-radius: 4px; box-shadow: inset 0 0 0 3px #b9b8b1, inset 0 2px 6px rgba(0,0,0,.15); color: var(--ink); overflow: hidden; }
-  .bezel-label { position: absolute; left: 190px; top: 148px; font-size: 9px; letter-spacing: .12em; color: #9a9790; font-weight: 800; }
-  .pbtn { position: absolute; left: 6px; width: 26px; height: 26px; border-radius: 7px; background: #e8e6e0; box-shadow: inset 0 0 0 1px #b8b5ad, 0 1px 0 #fff; display: grid; place-items: center; }
-  .pbtn svg { width: 16px; height: 16px; stroke: #333; fill: none; stroke-width: 1.8; stroke-linecap: round; }
-  .pbtn.sun { top: 40px; }
-  .pbtn.power { top: 82px; }
-  .sd { position: absolute; left: 10px; top: 128px; width: 18px; height: 8px; border-radius: 2px; background: #6e6b64; }
-  .led { position: absolute; left: 16px; top: 150px; width: 6px; height: 6px; border-radius: 50%; background: #9a9790; }
-  .usb { position: absolute; left: 112px; top: 14px; width: 26px; height: 10px; border-radius: 5px; background: #55524c; box-shadow: inset 0 0 0 2px #8d8a83; }
+  .front  { width: 190px; height: 250px; background: var(--shell); border-radius: 16px; transform: translateZ(22px); box-shadow: inset 0 0 0 1px var(--shell-edge); }
+  .back   { width: 190px; height: 250px; background: var(--shell-side); border-radius: 16px; transform: translateZ(-22px) rotateY(180deg); }
+  .side   { background: var(--shell-side); box-shadow: inset 0 0 0 1px var(--shell-edge); }
+  .right  { width: 44px; height: 250px; transform: rotateY(90deg) translateZ(168px); }
+  .left   { width: 44px; height: 250px; transform: rotateY(-90deg) translateZ(22px); }
+  .top    { width: 190px; height: 44px; transform: rotateX(90deg) translateZ(22px); }
+  .bottom { width: 190px; height: 44px; transform: rotateX(-90deg) translateZ(228px); background: var(--shell-dark); }
+  .screen { position: absolute; left: 20px; top: 20px; width: 150px; height: 150px; background: var(--paper); border-radius: 3px; box-shadow: inset 0 0 0 3px #b4b3ac, inset 0 2px 6px rgba(0,0,0,.18); color: var(--ink); overflow: hidden; }
+  /* right edge, top to bottom: light, card slot, sun button, power button */
+  .led   { position: absolute; left: 19px; top: 16px; width: 6px; height: 6px; border-radius: 50%; background: #8f8c84; }
+  .slot  { position: absolute; left: 16px; top: 36px; width: 8px; height: 40px; border-radius: 2px; background: #5f5c56; box-shadow: inset 0 0 0 1px #3f3d38; }
+  .pbtn  { position: absolute; left: 7px; width: 30px; height: 30px; border-radius: 8px; background: #eeece7; box-shadow: inset 0 0 0 1px #b3b0a8, 0 1px 0 #fff; display: grid; place-items: center; }
+  .pbtn::before { content: ""; position: absolute; left: -6px; top: 10px; width: 8px; height: 10px; border-radius: 2px 0 0 2px; background: #e4e2dc; box-shadow: inset 0 0 0 1px #b3b0a8; }
+  .pbtn svg { width: 17px; height: 17px; fill: #3a3835; }
+  .pbtn.sun { top: 118px; }
+  .pbtn.power { top: 168px; }
+  /* bottom edge: two mic holes, USB-C, a light */
+  .mic { position: absolute; top: 19px; width: 5px; height: 5px; border-radius: 50%; background: #8f8c84; }
+  .usb { position: absolute; left: 76px; top: 16px; width: 38px; height: 12px; border-radius: 6px; background: #55524c; box-shadow: inset 0 0 0 2px #8d8a83; }
+  .dot { position: absolute; left: 148px; top: 19px; width: 5px; height: 5px; border-radius: 50%; background: #8f8c84; }
+  /* top edge: speaker grille + a light */
+  .grille { position: absolute; left: 70px; top: 9px; display: grid; gap: 4px; justify-items: center; }
+  .grille i { display: block; height: 3px; border-radius: 2px; background: #8f8c84; }
+  .hole { position: absolute; left: 130px; top: 20px; width: 5px; height: 5px; border-radius: 50%; background: #8f8c84; }
   .glow { animation: glow 1.4s ease-in-out infinite; }
   @keyframes glow { 0%,100% { box-shadow: 0 0 0 2px var(--hint), 0 0 12px 4px var(--hint); } 50% { box-shadow: 0 0 0 2px var(--hint), 0 0 2px 0 var(--hint); } }
   @media (prefers-reduced-motion: reduce) { .glow { animation: none; box-shadow: 0 0 0 3px var(--hint); } .device { transition: none; } }
@@ -93,11 +109,11 @@
   /* screen contents */
   .scr { position: absolute; inset: 0; font-family: "Nunito", sans-serif; }
   .scr .pos { position: absolute; left: 6px; top: 4px; font-size: 9px; }
-  .scr .big { position: absolute; left: 0; right: 30px; top: 30px; text-align: center; font-size: 88px; font-weight: 700; line-height: 1; }
+  .scr .big { position: absolute; left: 0; right: 28px; top: 30px; text-align: center; font-size: 86px; font-weight: 700; line-height: 1; }
   .scr .icons { position: absolute; right: 8px; bottom: 10px; display: grid; gap: 8px; justify-items: end; }
   .scr .icons svg { width: 16px; height: 16px; fill: var(--ink); }
-  .scr .logo { position: absolute; inset: 0; display: grid; place-items: center; font-weight: 800; font-size: 26px; letter-spacing: -0.02em; }
-  .scr .logo small { display: block; font-size: 8px; letter-spacing: .2em; font-weight: 700; text-align: center; margin-top: 4px; }
+  .scr .logo-img { position: absolute; left: 10px; right: 10px; top: 34px; width: 130px; filter: grayscale(1) contrast(1.1); }
+  .scr .by { position: absolute; left: 0; right: 0; top: 108px; text-align: center; font-size: 8px; letter-spacing: .18em; font-weight: 700; }
   .scr .batt { position: absolute; right: 8px; top: 6px; width: 20px; height: 10px; border: 1.5px solid var(--ink); border-radius: 2px; }
   .scr .batt::after { content: ""; position: absolute; left: 2px; top: 2px; bottom: 2px; width: 70%; background: var(--ink); }
   .scr .batt::before { content: ""; position: absolute; right: -4px; top: 2px; width: 2px; height: 4px; background: var(--ink); }
@@ -106,14 +122,14 @@
   .scr.jump table { position: absolute; left: 10px; right: 10px; top: 62px; border-collapse: collapse; font-size: 12px; font-weight: 700; width: calc(100% - 20px); }
   .scr.jump th { font-weight: 800; border-bottom: 1.5px solid var(--ink); padding: 0 0 2px; }
   .scr.jump td { padding: 6px 0 0; text-align: center; }
-  .scr.jump td svg { width: 14px; height: 14px; stroke: var(--ink); fill: none; stroke-width: 2; stroke-linecap: round; vertical-align: middle; }
+  .scr.jump td svg { width: 14px; height: 14px; fill: var(--ink); vertical-align: middle; }
   .scr.wifi { padding: 8px 8px; font-size: 10px; line-height: 1.35; }
   .scr.wifi .t { font-size: 15px; font-weight: 800; margin-bottom: 4px; }
   .scr.wifi b { font-size: 12px; }
 
   .labels { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px 14px; margin: 10px 0 0; padding: 0; list-style: none; font-size: 15px; }
   .labels li { display: flex; gap: 8px; align-items: center; }
-  .labels .dot { flex: none; width: 12px; height: 12px; border-radius: 50%; background: var(--hint); }
+  .labels .dotc { flex: none; width: 12px; height: 12px; border-radius: 50%; background: var(--hint); }
 
   table.trouble { width: 100%; border-collapse: collapse; font-size: 15px; margin-top: 10px; }
   table.trouble th, table.trouble td { text-align: left; padding: 9px 6px; border-bottom: 1px solid var(--border); vertical-align: top; }
@@ -126,14 +142,24 @@
   footer.about dd { margin: 0; font-variant-numeric: tabular-nums; }
   footer.about .ok { color: #2f7d52; font-weight: 700; }
   footer.about .warn { color: var(--hint); font-weight: 700; }
+  footer.about p.credit { margin: 14px 0 0; }
+  footer.about a { color: var(--accent); }
 </style>
 </head>
 <body>
 <div class="wrap">
 
+<!-- The two button glyphs, drawn to match what is printed on the device: a sun with a solid
+     centre and eight short rays, and the standard power symbol. Reused everywhere below. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><g stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></g></symbol>
+  <symbol id="i-power" viewBox="0 0 24 24"><g stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"><path d="M12 3.5v8.5"/><path d="M6.8 6.6a7.4 7.4 0 1 0 10.4 0"/></g></symbol>
+</svg>
+
 <header>
+  <img class="logo" src="wordstar-mini-logo.png" alt="WordStar Mini" width="800" height="420">
+  <p class="by">By <a href="https://providenthq.com" rel="noopener">Provident</a></p>
   <h1>Setting up your WordStar Mini</h1>
-  <p class="lead">A small phonics practice companion for your child. Eight short steps, about ten minutes. The sooner you do step 6, the sooner it keeps itself up to date.</p>
   <div class="chips"><span class="chip">Nothing to install</span><span class="chip">Works offline</span><span class="chip">Charges over USB-C</span></div>
 </header>
 
@@ -141,21 +167,21 @@
 
 <li class="step">
   <div class="step-head"><span class="num">1</span><h2>Meet the device</h2></div>
-  <p>Two buttons do everything. The <b>sun</b> button is on top, the <b>power</b> button below it - the same symbols are printed on the buttons themselves. Drag the model to look around.</p>
+  <p>Two buttons on the right-hand edge do everything: the <b>sun</b> button on top, the <b>power</b> button below it - the same symbols are printed on the buttons. Drag the model to look around.</p>
   <div class="scene" data-screen="grapheme" data-highlight="sun power"></div>
   <p class="scene-hint">drag to rotate</p>
   <ul class="labels">
-    <li><span class="dot"></span><b>Sun</b> button - next / your turn</li>
-    <li><span class="dot"></span><b>Power</b> button - hear it again</li>
-    <li><span class="dot" style="background:var(--accent)"></span>Screen - a paper-like display; it keeps its picture even when asleep</li>
-    <li><span class="dot" style="background:var(--muted)"></span>Memory card slot - leave the card in</li>
+    <li><span class="dotc"></span><b>Sun</b> button - next / your child's turn</li>
+    <li><span class="dotc"></span><b>Power</b> button - hear it again</li>
+    <li><span class="dotc" style="background:var(--accent)"></span>Screen - paper-like; it keeps its picture even when asleep</li>
+    <li><span class="dotc" style="background:var(--muted)"></span>Memory card slot, above the buttons - leave the card in</li>
   </ul>
 </li>
 
 <li class="step">
   <div class="step-head"><span class="num">2</span><h2>Charge it</h2><span class="time">first time: ~1 hour</span></div>
   <p>Plug any USB-C cable into the port on the bottom edge. The little battery in the corner of the logo screen fills up as it charges. A full charge lasts many days of practice.</p>
-  <div class="scene" data-screen="logo" data-highlight="usb"></div>
+  <div class="scene" data-screen="logo" data-highlight="usb" data-rx="22" data-ry="-24"></div>
   <div class="note"><b>Good to know:</b> the device goes to sleep by itself after five quiet minutes and shows the logo. It isn't off - press either button and it wakes instantly.</div>
 </li>
 
@@ -164,24 +190,24 @@
   <p>Press either button. You'll see the logo for a moment, then the first sound of the programme: the letter <b>s</b>, spoken aloud. That's the practice screen.</p>
   <div class="scene" data-screen="grapheme" data-highlight="screen"></div>
   <ul class="labels">
-    <li><span class="dot" style="background:var(--accent)"></span>Top left: how far along you are, e.g. <code>1 / 124</code></li>
-    <li><span class="dot" style="background:var(--accent)"></span>Bottom right: the ▶ and 🔊 marks line up with the two buttons</li>
+    <li><span class="dotc" style="background:var(--accent)"></span>Top left: how far along you are, e.g. <code>1 / 124</code></li>
+    <li><span class="dotc" style="background:var(--accent)"></span>Bottom right: the ▶ and 🔊 marks line up with the two buttons</li>
   </ul>
 </li>
 
 <li class="step">
   <div class="step-head"><span class="num">4</span><h2>Practise together</h2><span class="time">the everyday bit</span></div>
   <ul class="todo">
-    <li><span><kbd class="btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="4"/></svg>Sun</kbd> tap once - <b>your child's turn</b>. The device listens for three seconds ("Listening..."), then plays their voice back ("Here's you!"). You judge it together - there's no marking.</span></li>
-    <li><span><kbd class="btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="4"/></svg>Sun</kbd> tap again - a little chime and <b>on to the next sound</b>.</span></li>
-    <li><span><kbd class="btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 3v8"/><path d="M6.3 6.3a8 8 0 1 0 11.4 0"/></svg>Power</kbd> tap - <b>hear the sound again</b>, as often as you like.</span></li>
+    <li><span><kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> tap once - <b>your child's turn</b>. The device listens for three seconds ("Listening..."), then plays their voice back ("Here's you!"). You judge it together - there's no marking.</span></li>
+    <li><span><kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> tap again - a little chime and <b>on to the next sound</b>.</span></li>
+    <li><span><kbd class="btn"><svg class="glyph"><use href="#i-power"/></svg>Power</kbd> tap - <b>hear the sound again</b>, as often as you like.</span></li>
   </ul>
   <p>It remembers where you got to, so you can stop any time and carry on tomorrow.</p>
 </li>
 
 <li class="step">
   <div class="step-head"><span class="num">5</span><h2>Jump ahead or back</h2><span class="time">for grown-ups</span></div>
-  <p>To skip to a different part of the programme, <b>hold the sun button for two seconds</b>. A small table appears:</p>
+  <p>To skip to a different part of the programme, <b>hold the <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> button for two seconds</b>. A small table appears:</p>
   <div class="scene" data-screen="jump" data-highlight="sun"></div>
   <ul class="todo">
     <li><span><b>Tap</b> sun or power to move through the sections: Start, Digraphs, Vowel teams, More vowels, Alt. spellings, Tricky spellings.</span></li>
@@ -194,7 +220,7 @@
   <div class="step-head"><span class="num">6</span><h2>Connect it to your home WiFi</h2><span class="time">3 minutes, recommended</span></div>
   <p>Once it knows your WiFi, the device quietly checks for improvements about twice a day and installs them itself - new sounds included. You never have to do this again.</p>
   <ul class="todo">
-    <li><span><b>Hold the power button for two seconds.</b> The screen changes to <b>WiFi Mode</b> and shows a network name, a password and an address.</span></li>
+    <li><span><b>Hold the <kbd class="btn"><svg class="glyph"><use href="#i-power"/></svg>Power</kbd> button for two seconds.</b> The screen changes to <b>WiFi Mode</b> and shows a network name, a password and an address.</span></li>
     <li><span>On your phone, <b>join that WiFi network</b> (it's the device's own, very short-range network: name <code>WordStar Mini</code>, password <code>learnwords</code>).</span></li>
     <li><span>Open your browser and go to the address on the screen: <code>http://192.168.4.1</code></span></li>
     <li><span>Tap <b>Home WiFi</b>, choose your home network from the list, type its password and tap <b>Connect</b>. Leave "Automatically check for updates" ticked.</span></li>
@@ -232,25 +258,26 @@
 <footer class="about">
   <h3>About this guide</h3>
   <dl>
-    <dt>Guide revision</dt><dd>1 (18 September 2026)</dd>
+    <dt>Guide revision</dt><dd>2 (18 September 2026)</dd>
     <dt>Written for firmware</dt><dd id="guide-fw">2026.09.18.10</dd>
     <dt>Latest firmware published</dt><dd id="latest-fw">checking...</dd>
     <dt>Latest sounds pack</dt><dd id="latest-content">checking...</dd>
     <dt>Your device's version</dt><dd>WiFi Mode (hold power 2s) &rarr; Home WiFi &rarr; "Updates" shows it. A device on your WiFi updates itself; an older one just needs step 6.</dd>
   </dl>
+  <p class="credit">WordStar Mini is made by <a href="https://providenthq.com" rel="noopener">Provident</a>.</p>
 </footer>
 
 </div>
 
 <script>
 (function () {
-  const SUN = '<svg viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="4"/></svg>';
-  const POWER = '<svg viewBox="0 0 24 24"><path d="M12 3v8"/><path d="M6.3 6.3a8 8 0 1 0 11.4 0"/></svg>';
+  const SUN = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><g stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></g></svg>';
+  const POWER = '<svg viewBox="0 0 24 24"><g stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"><path d="M12 3.5v8.5"/><path d="M6.8 6.6a7.4 7.4 0 1 0 10.4 0"/></g></svg>';
   const PLAY = '<svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg>';
   const SPEAKER = '<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
 
   const screens = {
-    logo: '<div class="scr"><div class="batt"></div><div class="logo"><div>WordStar<small>MINI</small></div></div></div>',
+    logo: '<div class="scr"><div class="batt"></div><img class="logo-img" src="wordstar-mini-logo.png" alt=""><div class="by">BY PROVIDENT</div></div>',
     grapheme: '<div class="scr"><div class="pos">1 / 124</div><div class="big">s</div><div class="icons">' + PLAY + SPEAKER + '</div></div>',
     jump: '<div class="scr jump"><div class="g">s</div><div class="lbl">Start</div><table><tr><th></th><th>Tap</th><th>Hold</th></tr>' +
           '<tr><td>' + SUN + '</td><td>Next</td><td>Go</td></tr><tr><td>' + POWER + '</td><td>Back</td><td>Cancel</td></tr></table></div>',
@@ -260,25 +287,30 @@
   function buildDevice(screen, highlight) {
     const hl = (highlight || '').split(/\s+/);
     const g = k => hl.includes(k) ? ' glow' : '';
+    const grille = '<div class="grille"><i style="width:14px"></i><i style="width:26px"></i><i style="width:38px"></i><i style="width:26px"></i><i style="width:14px"></i></div>';
     return '<div class="device">' +
-      '<div class="face front"><div class="screen' + g('screen') + '">' + (screens[screen] || '') + '</div><div class="bezel-label">WORDSTAR</div></div>' +
+      '<div class="face front"><div class="screen' + g('screen') + '">' + (screens[screen] || '') + '</div></div>' +
       '<div class="face back"></div>' +
-      '<div class="face side right"><div class="pbtn sun' + g('sun') + '">' + SUN + '</div><div class="pbtn power' + g('power') + '">' + POWER + '</div><div class="sd"></div><div class="led"></div></div>' +
-      '<div class="face side left"></div><div class="face side top"></div>' +
-      '<div class="face side bottom"><div class="usb' + g('usb') + '"></div></div>' +
+      '<div class="face side right"><div class="led"></div><div class="slot"></div>' +
+        '<div class="pbtn sun' + g('sun') + '">' + SUN + '</div><div class="pbtn power' + g('power') + '">' + POWER + '</div></div>' +
+      '<div class="face side left"></div>' +
+      '<div class="face side top">' + grille + '<div class="hole"></div></div>' +
+      '<div class="face side bottom"><div class="mic" style="left:46px"></div><div class="mic" style="left:56px"></div><div class="usb' + g('usb') + '"></div><div class="dot"></div></div>' +
     '</div>';
   }
 
   document.querySelectorAll('.scene').forEach(scene => {
     scene.innerHTML = buildDevice(scene.dataset.screen, scene.dataset.highlight);
     const dev = scene.firstElementChild;
-    let rx = -14, ry = -32, dragging = false, lx = 0, ly = 0;
+    let rx = parseFloat(scene.dataset.rx || '-12'), ry = parseFloat(scene.dataset.ry || '-30');
+    let dragging = false, lx = 0, ly = 0;
     const apply = () => { dev.style.transform = 'rotateX(' + rx + 'deg) rotateY(' + ry + 'deg)'; };
+    apply();
     scene.addEventListener('pointerdown', e => { dragging = true; lx = e.clientX; ly = e.clientY; scene.setPointerCapture(e.pointerId); });
     scene.addEventListener('pointermove', e => {
       if (!dragging) return;
       ry += (e.clientX - lx) * 0.5; rx -= (e.clientY - ly) * 0.5;
-      rx = Math.max(-80, Math.min(80, rx)); lx = e.clientX; ly = e.clientY; apply();
+      rx = Math.max(-85, Math.min(85, rx)); lx = e.clientX; ly = e.clientY; apply();
     });
     const stop = () => { dragging = false; };
     scene.addEventListener('pointerup', stop); scene.addEventListener('pointercancel', stop);
@@ -287,18 +319,16 @@
   // The "applies to" details stay current on their own: the latest published firmware and
   // sounds pack are read from this same site, so a stale guide announces itself.
   const guideFw = document.getElementById('guide-fw').textContent.trim();
-  const newer = (a, b) => { // true if a is a newer dotted version than b
+  const newer = (a, b) => {
     const pa = a.split('.').map(Number), pb = b.split('.').map(Number);
     for (let i = 0; i < Math.max(pa.length, pb.length); i++) { const x = pa[i] || 0, y = pb[i] || 0; if (x !== y) return x > y; }
     return false;
   };
   fetch('../manifest.json', { cache: 'no-store' }).then(r => r.json()).then(m => {
     const el = document.getElementById('latest-fw');
-    if (newer(m.version, guideFw)) {
-      el.innerHTML = m.version + ' <span class="warn">(newer than this guide - a few details may differ)</span>';
-    } else {
-      el.innerHTML = m.version + ' <span class="ok">- this guide is current</span>';
-    }
+    el.innerHTML = newer(m.version, guideFw)
+      ? m.version + ' <span class="warn">(newer than this guide - a few details may differ)</span>'
+      : m.version + ' <span class="ok">- this guide is current</span>';
   }).catch(() => { document.getElementById('latest-fw').textContent = 'unavailable right now'; });
   fetch('../content/manifest.txt', { cache: 'no-store' }).then(r => r.text()).then(t => {
     const m = t.match(/^version\s+(\S+)/m); const n = (t.match(/^audio\//gm) || []).length;
