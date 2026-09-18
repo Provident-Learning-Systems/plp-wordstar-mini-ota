@@ -13,10 +13,10 @@
     --panel: 60mm;
     --radius: 8mm;
     --bleed: 2mm;      /* extra printed area outside the cut line, trimmed away */
-    /* Lid only: a notch on the right edge clears the case's hinge/latch - 5 mm deep, 20 mm
+    /* Lid only: a notch on the right edge clears the case's hinge/latch - 2.5 mm deep, 20 mm
        tall, vertically centred (20 / 20 / 20 along that edge). Drawn into the front card's
        cut line by the SVG below; keep these in step with its path if the case changes. */
-    --notch-d: 5mm;
+    --notch-d: 2.5mm;
     --notch-h: 20mm;
     /* The base's insert is 1 mm smaller overall (0.5 mm a side): the lid card is deliberately
        a snug fit so the lid clicks shut, but the same size in the base bows the paper. */
@@ -74,13 +74,12 @@
   .back .row { display: flex; align-items: center; justify-content: center; gap: 2mm; width: 100%; }
   /* Vertical text, kept exactly the QR's height (text-align centres along the vertical inline
      axis) so it never runs past the code into the text above or below. */
-  .back .scan { writing-mode: vertical-rl; transform: rotate(180deg); height: 23mm; text-align: center; font-size: 11pt; font-weight: 800; letter-spacing: .08em; line-height: 1; flex: none; }
-  .back .qr { width: 23mm; height: 23mm; display: block; flex: none; }
-  .back .sub { font-size: 8.6pt; font-style: italic; line-height: 1.22; color: var(--muted); margin: 0; text-wrap: balance; }
-  /* Bottom-aligned so the URL sits on the logo's baseline rather than floating mid-height. */
-  .back .brand { display: flex; align-items: flex-end; justify-content: center; gap: 1.6mm; font-size: 9pt; color: var(--muted); font-weight: 700; line-height: 1; }
-  .back .brand span { padding-bottom: 0.9mm; }
-  .back .brand-logo { height: 7mm; width: auto; display: block; }
+  .back .scan { writing-mode: vertical-rl; transform: rotate(180deg); height: 25mm; text-align: center; font-size: 12pt; font-weight: 800; letter-spacing: .08em; line-height: 1; flex: none; }
+  .back .qr { width: 25mm; height: 25mm; display: block; flex: none; }
+  /* Same size and weight as the caption above the QR: the account line leads straight into
+     the address on the line below it. */
+  .back .sub { font-size: 10pt; font-weight: 700; line-height: 1.2; color: var(--ink); margin: 0; text-wrap: balance; }
+  .back .brand { font-size: 10pt; font-weight: 700; line-height: 1.2; color: var(--ink); letter-spacing: .01em; }
 
   @media print {
     html, body { background: none; }
@@ -97,10 +96,10 @@
     <div class="label">Front (lid) &middot; 60 mm</div>
     <div class="mark tl"></div><div class="mark tr"></div><div class="mark bl"></div><div class="mark br"></div>
     <div class="card front">
-      <!-- 60 x 60 mm, r = 8 mm, with the 5 x 20 mm notch centred on the right edge (y 20-40).
+      <!-- 60 x 60 mm, r = 8 mm, with the 2.5 x 20 mm notch centred on the right edge (y 20-40).
            Short ticks beyond the edge mark the notch's top and bottom for cutting. -->
       <svg class="cutsvg" viewBox="0 0 60 60" aria-hidden="true">
-        <path d="M8 0 H52 A8 8 0 0 1 60 8 V20 H55 V40 H60 V52 A8 8 0 0 1 52 60 H8 A8 8 0 0 1 0 52 V8 A8 8 0 0 1 8 0 Z"/>
+        <path d="M8 0 H52 A8 8 0 0 1 60 8 V20 H57.5 V40 H60 V52 A8 8 0 0 1 52 60 H8 A8 8 0 0 1 0 52 V8 A8 8 0 0 1 8 0 Z"/>
         <line x1="61" y1="20" x2="64" y2="20"/><line x1="61" y1="40" x2="64" y2="40"/>
       </svg>
       <img class="logo" src="wordstar-mini-logo.png" alt="WordStar Mini">
@@ -114,13 +113,13 @@
     <div class="mark tl"></div><div class="mark tr"></div><div class="mark bl"></div><div class="mark br"></div>
     <div class="card back">
       <div class="cut"></div>
-      <p class="caption">For a step&#8209;by&#8209;step guide to setting up and using your device</p>
+      <p class="caption">For a step&#8209;by&#8209;step guide to setting up &amp; using your device</p>
       <div class="row">
         <div class="scan">SCAN ME</div>
         <img class="qr" src="qr-code.svg" alt="QR code linking to the setup guide">
       </div>
-      <p class="sub">Follow your child's journey to Kindergarten success &mdash; phonics, word meanings and more &mdash; in your WordStar account.</p>
-      <div class="brand"><img class="brand-logo" src="wordstar-mini-logo.png" alt="WordStar Mini"><span>&middot; providenthq.com</span></div>
+      <p class="sub">Create a WordStar account to follow your child's journey:</p>
+      <div class="brand">wordstar.providenthq.com</div>
     </div>
   </div>
 
