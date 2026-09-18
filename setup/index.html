@@ -110,6 +110,9 @@
   .pbtn svg { width: 17px; height: 17px; fill: currentColor; color: var(--btn-ink); }
   .pbtn.sun { top: 118px; }
   .pbtn.power { top: 168px; }
+  /* On the real case the power symbol is printed turned a quarter-turn anticlockwise (its
+     tick points towards the screen), so the model matches it. */
+  .pbtn.power svg { transform: rotate(-90deg); }
   .mic { position: absolute; top: 19px; width: 5px; height: 5px; border-radius: 50%; background: #8f8c84; }
   .usb { position: absolute; left: 76px; top: 16px; width: 38px; height: 12px; border-radius: 6px; background: #55524c; box-shadow: inset 0 0 0 2px #8d8a83; }
   .dot { position: absolute; left: 148px; top: 19px; width: 5px; height: 5px; border-radius: 50%; background: #8f8c84; }
