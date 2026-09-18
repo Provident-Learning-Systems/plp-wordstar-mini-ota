@@ -7,12 +7,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
   /* Print template for the two card inserts of the 60 x 60 mm clear case: front (lid) and
-     back (base), side by side with crop marks. Measured from the box: 60 x 60 mm, rounded
-     corners of about 8 mm. Change the three values below if the case ever changes. */
+     back (base). One A4 portrait sheet carries 12 cards - six lids (top two rows) and six
+     bases (bottom two rows) - each with crop ticks in the gutters. Measured from the box:
+     60 x 60 mm, rounded corners of about 8 mm. Change the values below if the case changes. */
   :root {
     --panel: 60mm;
     --radius: 8mm;
-    --bleed: 2mm;      /* extra printed area outside the cut line, trimmed away */
+    --bleed: 1mm;      /* white printed area outside the cut line, trimmed away */
     /* Lid only: a notch on the right edge clears the case's hinge/latch - 2.5 mm deep, 20 mm
        tall, vertically centred (20 / 20 / 20 along that edge). Drawn into the front card's
        cut line by the SVG below; keep these in step with its path if the case changes. */
@@ -21,19 +22,26 @@
     /* The base's insert is 1 mm smaller overall (0.5 mm a side): the lid card is deliberately
        a snug fit so the lid clicks shut, but the same size in the base bows the paper. */
     --panel-back: 59mm;
+    /* Half the gap between neighbouring cards; the crop ticks live in this space. Three
+       columns of (panel + 2 bleed + 2 gutter) = 3 x 66 mm = 198 mm, inside A4's 199 mm
+       printable width at the 5.5 mm side margins set in @page. */
+    --gutter: 2mm;
+    --tick: 1.6mm;
     --ink: #23211d;
     --muted: #6d675d;
     --paper: #ffffff;
   }
-  @page { size: A4 landscape; margin: 12mm; }
+  @page { size: A4 portrait; margin: 10mm 5.5mm; }
   * { box-sizing: border-box; }
   html, body { margin: 0; background: #e9e6df; font-family: "Nunito", -apple-system, "Segoe UI", sans-serif; color: var(--ink); }
-  .howto { max-width: 190mm; margin: 10mm auto 6mm; font-size: 10pt; color: var(--muted); text-align: center; line-height: 1.5; }
+  .howto { max-width: 190mm; margin: 10mm auto 6mm; padding: 0 6mm; font-size: 10pt; color: var(--muted); text-align: center; line-height: 1.5; }
   .howto code { font-family: ui-monospace, Menlo, monospace; }
-  .sheet { display: flex; gap: 22mm; justify-content: center; align-items: flex-start; padding: 10mm 12mm 16mm; }
+  /* The sheet: a 3-column grid of card footprints, sized like the printable area of the page. */
+  .sheet { display: grid; grid-template-columns: repeat(3, max-content); justify-content: center; margin: 0 auto 16mm; }
 
-  .card-wrap { position: relative; padding: 8mm; }
-  .label { position: absolute; left: 0; right: 0; top: -1mm; text-align: center; font-size: 8.5pt; color: var(--muted); letter-spacing: .12em; text-transform: uppercase; }
+  /* Each card sits in its own footprint: card + a gutter all round. --inset is the distance
+     from the footprint's edge to the cut line, which is where the crop ticks point. */
+  .card-wrap { position: relative; padding: var(--gutter); --inset: calc(var(--gutter) + var(--bleed)); }
   /* The printed card: panel + bleed. The dashed line is the cut line at exactly 60 x 60 mm. */
   .card {
     position: relative;
@@ -43,15 +51,19 @@
     padding: calc(var(--bleed) + 4.5mm); overflow: hidden;
   }
   .cut { position: absolute; left: var(--bleed); top: var(--bleed); width: var(--panel); height: var(--panel); border: 0.2mm dashed #b8b3a8; border-radius: var(--radius); pointer-events: none; }
-  /* crop marks, outside the bleed */
-  .mark { position: absolute; width: 5mm; height: 5mm; }
+  /* Crop ticks: each corner element is the square from the footprint's corner to the cut
+     line's intersection, and its two pseudo-elements are the short ticks lying along the cut
+     lines, out in the gutter. Neighbouring cards' ticks meet in the middle of the gutter. */
+  .mark { position: absolute; width: var(--inset); height: var(--inset); }
   .mark::before, .mark::after { content: ""; position: absolute; background: #000; }
-  .mark.tl { left: 2.5mm; top: 2.5mm; } .mark.tr { right: 2.5mm; top: 2.5mm; }
-  .mark.bl { left: 2.5mm; bottom: 2.5mm; } .mark.br { right: 2.5mm; bottom: 2.5mm; }
-  .mark.tl::before, .mark.bl::before { right: 0; width: 4mm; height: 0.2mm; } .mark.tl::before { bottom: 0; } .mark.bl::before { top: 0; }
-  .mark.tr::before, .mark.br::before { left: 0; width: 4mm; height: 0.2mm; } .mark.tr::before { bottom: 0; } .mark.br::before { top: 0; }
-  .mark.tl::after, .mark.tr::after { bottom: 0; width: 0.2mm; height: 4mm; } .mark.tl::after { right: 0; } .mark.tr::after { left: 0; }
-  .mark.bl::after, .mark.br::after { top: 0; width: 0.2mm; height: 4mm; } .mark.bl::after { right: 0; } .mark.br::after { left: 0; }
+  .mark.tl { left: 0; top: 0; } .mark.tr { right: 0; top: 0; }
+  .mark.bl { left: 0; bottom: 0; } .mark.br { right: 0; bottom: 0; }
+  .mark::before { height: 0.2mm; width: var(--tick); }
+  .mark.tl::before, .mark.bl::before { left: 0; } .mark.tr::before, .mark.br::before { right: 0; }
+  .mark.tl::before, .mark.tr::before { bottom: 0; } .mark.bl::before, .mark.br::before { top: 0; }
+  .mark::after { width: 0.2mm; height: var(--tick); }
+  .mark.tl::after, .mark.bl::after { right: 0; } .mark.tr::after, .mark.br::after { left: 0; }
+  .mark.tl::after, .mark.tr::after { top: 0; } .mark.bl::after, .mark.br::after { bottom: 0; }
 
   /* front (lid): the logo runs almost edge to edge, with a 4 mm margin to the cut line - and
      the artwork keeps clear of the notch by carrying an extra notch-width of padding on the
@@ -66,9 +78,11 @@
   .front .by { margin-top: 2mm; font-size: 8pt; font-weight: 700; letter-spacing: .3em; color: var(--muted); }
   .front .tag { margin: 4mm 0 0; font-size: 10pt; font-weight: 800; line-height: 1.25; text-wrap: balance; }
 
-  /* back (base): one row - SCAN ME turned upright on the left, the QR, the guide caption on
-     the right - then the account line and the brand line. All body text at the lid's 10pt. */
-  /* Pure black on the back (the front uses the warm --ink), so the text prints as solid K. */
+  /* back (base): the guide caption, then SCAN ME turned upright beside the QR, then the
+     account panel. All body text at the lid's 10pt, in pure black (the front uses the warm
+     --ink) so it prints as solid K. The base card is 1 mm smaller, so its footprint carries
+     an extra 0.5 mm of padding a side to keep the grid's pitch and its ticks on its cut line. */
+  .card-wrap.base { padding: calc(var(--gutter) + 0.5mm); --inset: calc(var(--gutter) + 0.5mm + var(--bleed)); }
   .back { color: #000; width: calc(var(--panel-back) + 2 * var(--bleed)); height: calc(var(--panel-back) + 2 * var(--bleed)); padding: calc(var(--bleed) + 3mm) calc(var(--bleed) + 2.4mm); justify-content: space-between; }
   .back .cut { width: var(--panel-back); height: var(--panel-back); }
   .back .caption { font-size: 10pt; font-weight: 700; line-height: 1.2; margin: 0; text-wrap: balance; }
@@ -88,32 +102,34 @@
   @media print {
     html, body { background: none; }
     .howto { display: none; }
-    .sheet { padding: 0; gap: 22mm; }
+    .sheet { margin: 0 auto; }
+    .card-wrap { break-inside: avoid; }
   }
 </style>
 </head>
 <body>
-<p class="howto">Box inserts for the 60 &times; 60 mm case: the lid card is 60 mm (a snug fit, so the lid clicks), the base card 59 mm (so the paper doesn't bow). Print at <b>100% scale</b> (no "fit to page"), A4 landscape. Cut along the dashed lines - the white outside them is bleed. Sizes and corner radius are the <code>--panel</code> / <code>--panel-back</code> / <code>--radius</code> values at the top of this file.</p>
-<div class="sheet">
+<p class="howto">Box inserts for the 60 &times; 60 mm case, 12 to an A4 sheet: the <b>top two rows</b> are lid cards (60 mm, notched - a snug fit so the lid clicks), the <b>bottom two rows</b> are base cards (59 mm, so the paper doesn't bow). Print <b>A4 portrait at 100% scale</b> (no "fit to page"). Cut along the dashed lines; the short black ticks in the gutters line up with them. Sizes and corner radius are the <code>--panel</code> / <code>--panel-back</code> / <code>--radius</code> values at the top of this file; <code>copies</code> in the script at the bottom sets how many of each.</p>
 
-  <div class="card-wrap">
-    <div class="label">Front (lid) &middot; 60 mm</div>
+<!-- One master of each card; the script at the bottom stamps six of each into the sheet. -->
+<template id="front-card">
+  <div class="card-wrap lid">
     <div class="mark tl"></div><div class="mark tr"></div><div class="mark bl"></div><div class="mark br"></div>
     <div class="card front">
       <!-- 60 x 60 mm, r = 8 mm, with the 2.5 x 20 mm notch centred on the right edge (y 20-40).
            Short ticks beyond the edge mark the notch's top and bottom for cutting. -->
       <svg class="cutsvg" viewBox="0 0 60 60" aria-hidden="true">
         <path d="M8 0 H52 A8 8 0 0 1 60 8 V20 H57.5 V40 H60 V52 A8 8 0 0 1 52 60 H8 A8 8 0 0 1 0 52 V8 A8 8 0 0 1 8 0 Z"/>
-        <line x1="61" y1="20" x2="64" y2="20"/><line x1="61" y1="40" x2="64" y2="40"/>
+        <line x1="61" y1="20" x2="62.6" y2="20"/><line x1="61" y1="40" x2="62.6" y2="40"/>
       </svg>
       <img class="logo" src="wordstar-mini-logo.png" alt="WordStar Mini">
       <div class="by">BY PROVIDENT</div>
       <p class="tag">Support your child's phonics practice, anywhere, anytime.</p>
     </div>
   </div>
+</template>
 
-  <div class="card-wrap">
-    <div class="label">Back (base) &middot; 59 mm</div>
+<template id="back-card">
+  <div class="card-wrap base">
     <div class="mark tl"></div><div class="mark tr"></div><div class="mark bl"></div><div class="mark br"></div>
     <div class="card back">
       <div class="cut"></div>
@@ -128,7 +144,18 @@
       </div>
     </div>
   </div>
+</template>
 
-</div>
+<div class="sheet" id="sheet"></div>
+
+<script>
+  // Six of each: with three columns that is two rows of lids, then two rows of bases.
+  const copies = 6;
+  const sheet = document.getElementById('sheet');
+  for (const id of ['front-card', 'back-card']) {
+    const tpl = document.getElementById(id);
+    for (let i = 0; i < copies; i++) sheet.appendChild(tpl.content.cloneNode(true));
+  }
+</script>
 </body>
 </html>
