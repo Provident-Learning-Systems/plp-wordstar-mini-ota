@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>WordStar Mini setup</title>
-<meta name="description" content="Step-by-step setup guide for the WordStar Mini phonics practice device.">
+<meta name="description" content="Step-by-step guide to setting up and using the WordStar Mini phonics practice device.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -25,6 +25,7 @@
     --shell-edge: #bab7ae;
     --paper: #d6d8d2;
     --ink: #2a2a2a;
+    --btn-ink: #3a3835;
     color-scheme: light dark;
   }
   @media (prefers-color-scheme: dark) {
@@ -36,6 +37,7 @@
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; }
+  html { scroll-behavior: smooth; }
   body {
     background: var(--bg); color: var(--text);
     font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -44,7 +46,7 @@
   }
   .wrap { max-width: 720px; margin: 0 auto; }
 
-  header { text-align: center; margin-bottom: 26px; }
+  header { text-align: center; margin-bottom: 22px; }
   header .logo { width: min(340px, 78vw); height: auto; display: block; margin: 0 auto 4px; }
   header .by { margin: 0 0 18px; color: var(--muted); font-size: 15px; letter-spacing: .04em; }
   header .by a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--border); }
@@ -53,11 +55,26 @@
   .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 0; }
   .chip { background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 5px 12px; font-size: 14px; color: var(--muted); }
 
+  nav.toc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 0 0 30px; }
+  nav.toc a { display: block; text-decoration: none; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 12px 12px 10px; }
+  nav.toc a:hover { border-color: var(--accent); }
+  nav.toc small { display: block; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 2px; }
+  nav.toc b { font-size: 16px; }
+  nav.toc span { display: block; color: var(--muted); font-size: 13px; margin-top: 2px; }
+  @media (max-width: 520px) { nav.toc { grid-template-columns: 1fr; } }
+
+  .part { margin: 34px 0 14px; display: flex; align-items: baseline; gap: 12px; }
+  .part small { color: var(--accent); font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: .1em; }
+  .part h2 { margin: 0; font-size: 26px; font-weight: 800; }
+  .part p { margin: 6px 0 0; color: var(--muted); }
+  .part-wrap { margin: 34px 0 14px; }
+  .part-wrap p { margin: 4px 0 0; color: var(--muted); }
+
   ol.steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 22px; }
   .step { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 22px 22px 24px; }
   .step-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 8px; }
   .num { flex: none; width: 36px; height: 36px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 800; display: grid; place-items: center; font-size: 17px; transform: translateY(6px); }
-  .step h2 { font-size: 23px; font-weight: 800; margin: 0; text-wrap: balance; }
+  .step h3 { font-size: 23px; font-weight: 800; margin: 0; text-wrap: balance; }
   .step p { margin: 8px 0; }
   .step .time { color: var(--muted); font-size: 14px; margin-left: auto; white-space: nowrap; }
   .todo { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 8px; }
@@ -66,11 +83,12 @@
   .todo b { font-weight: 800; }
   .note { background: var(--hint-soft); border-radius: 10px; padding: 10px 14px; font-size: 15px; margin-top: 14px; }
   .note b { color: var(--hint); }
-  /* Inline button chips use the same glyphs the device has printed on its buttons. */
-  kbd.btn { display: inline-flex; align-items: center; gap: 6px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; padding: 1px 9px 1px 6px; font: inherit; font-weight: 800; font-size: 15px; vertical-align: -1px; }
+  /* The button chips carry the same glyphs the device has printed on its buttons - used for
+     every mention of a button, so the text and the hardware always look alike. */
+  kbd.btn { display: inline-flex; align-items: center; gap: 6px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; padding: 1px 9px 1px 6px; font: inherit; font-weight: 800; font-size: 15px; vertical-align: -1px; white-space: nowrap; }
   kbd.btn svg { width: 17px; height: 17px; }
   code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.92em; background: var(--surface-2); padding: 1px 6px; border-radius: 6px; }
-  svg.glyph { fill: currentColor; }
+  svg.glyph { fill: currentColor; color: currentColor; }
 
   /* ---- 3D device (portrait body, matched to the real unit) ---- */
   .scene { display: flex; justify-content: center; align-items: center; height: 340px; margin: 14px 0 4px; perspective: 1000px; touch-action: none; cursor: grab; user-select: none; }
@@ -85,19 +103,16 @@
   .top    { width: 190px; height: 44px; transform: rotateX(90deg) translateZ(22px); }
   .bottom { width: 190px; height: 44px; transform: rotateX(-90deg) translateZ(228px); background: var(--shell-dark); }
   .screen { position: absolute; left: 20px; top: 20px; width: 150px; height: 150px; background: var(--paper); border-radius: 3px; box-shadow: inset 0 0 0 3px #b4b3ac, inset 0 2px 6px rgba(0,0,0,.18); color: var(--ink); overflow: hidden; }
-  /* right edge, top to bottom: light, card slot, sun button, power button */
   .led   { position: absolute; left: 19px; top: 16px; width: 6px; height: 6px; border-radius: 50%; background: #8f8c84; }
   .slot  { position: absolute; left: 16px; top: 36px; width: 8px; height: 40px; border-radius: 2px; background: #5f5c56; box-shadow: inset 0 0 0 1px #3f3d38; }
-  .pbtn  { position: absolute; left: 7px; width: 30px; height: 30px; border-radius: 8px; background: #eeece7; box-shadow: inset 0 0 0 1px #b3b0a8, 0 1px 0 #fff; display: grid; place-items: center; }
+  .pbtn  { position: absolute; left: 7px; width: 30px; height: 30px; border-radius: 8px; background: #eeece7; box-shadow: inset 0 0 0 1px #b3b0a8, 0 1px 0 #fff; display: grid; place-items: center; color: var(--btn-ink); }
   .pbtn::before { content: ""; position: absolute; left: -6px; top: 10px; width: 8px; height: 10px; border-radius: 2px 0 0 2px; background: #e4e2dc; box-shadow: inset 0 0 0 1px #b3b0a8; }
-  .pbtn svg { width: 17px; height: 17px; fill: #3a3835; }
+  .pbtn svg { width: 17px; height: 17px; fill: currentColor; color: var(--btn-ink); }
   .pbtn.sun { top: 118px; }
   .pbtn.power { top: 168px; }
-  /* bottom edge: two mic holes, USB-C, a light */
   .mic { position: absolute; top: 19px; width: 5px; height: 5px; border-radius: 50%; background: #8f8c84; }
   .usb { position: absolute; left: 76px; top: 16px; width: 38px; height: 12px; border-radius: 6px; background: #55524c; box-shadow: inset 0 0 0 2px #8d8a83; }
   .dot { position: absolute; left: 148px; top: 19px; width: 5px; height: 5px; border-radius: 50%; background: #8f8c84; }
-  /* top edge: speaker grille + a light */
   .grille { position: absolute; left: 70px; top: 9px; display: grid; gap: 4px; justify-items: center; }
   .grille i { display: block; height: 3px; border-radius: 2px; background: #8f8c84; }
   .hole { position: absolute; left: 130px; top: 20px; width: 5px; height: 5px; border-radius: 50%; background: #8f8c84; }
@@ -106,8 +121,7 @@
   @media (prefers-reduced-motion: reduce) { .glow { animation: none; box-shadow: 0 0 0 3px var(--hint); } .device { transition: none; } }
   .scene-hint { text-align: center; color: var(--muted); font-size: 13px; margin: 0 0 6px; }
 
-  /* screen contents */
-  .scr { position: absolute; inset: 0; font-family: "Nunito", sans-serif; }
+  .scr { position: absolute; inset: 0; font-family: "Nunito", sans-serif; color: var(--ink); }
   .scr .pos { position: absolute; left: 6px; top: 4px; font-size: 9px; }
   .scr .big { position: absolute; left: 0; right: 28px; top: 30px; text-align: center; font-size: 86px; font-weight: 700; line-height: 1; }
   .scr .icons { position: absolute; right: 8px; bottom: 10px; display: grid; gap: 8px; justify-items: end; }
@@ -122,7 +136,7 @@
   .scr.jump table { position: absolute; left: 10px; right: 10px; top: 62px; border-collapse: collapse; font-size: 12px; font-weight: 700; width: calc(100% - 20px); }
   .scr.jump th { font-weight: 800; border-bottom: 1.5px solid var(--ink); padding: 0 0 2px; }
   .scr.jump td { padding: 6px 0 0; text-align: center; }
-  .scr.jump td svg { width: 14px; height: 14px; fill: var(--ink); vertical-align: middle; }
+  .scr.jump td svg { width: 14px; height: 14px; fill: var(--ink); color: var(--ink); vertical-align: middle; }
   .scr.wifi { padding: 8px 8px; font-size: 10px; line-height: 1.35; }
   .scr.wifi .t { font-size: 15px; font-weight: 800; margin-bottom: 4px; }
   .scr.wifi b { font-size: 12px; }
@@ -136,7 +150,7 @@
   table.trouble th { color: var(--muted); font-size: 13px; text-transform: uppercase; letter-spacing: .05em; }
 
   footer.about { margin-top: 34px; background: var(--surface-2); border-radius: 14px; padding: 18px 20px; font-size: 14.5px; color: var(--muted); }
-  footer.about h3 { margin: 0 0 8px; font-size: 15px; color: var(--text); text-transform: uppercase; letter-spacing: .06em; }
+  footer.about h2 { margin: 0 0 8px; font-size: 15px; color: var(--text); text-transform: uppercase; letter-spacing: .06em; }
   footer.about dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px 14px; margin: 0; }
   footer.about dt { font-weight: 700; color: var(--text); }
   footer.about dd { margin: 0; font-variant-numeric: tabular-nums; }
@@ -158,35 +172,46 @@
 
 <header>
   <img class="logo" src="wordstar-mini-logo.png" alt="WordStar Mini" width="800" height="420">
-  <p class="by">By <a href="https://providenthq.com" rel="noopener">Provident</a></p>
-  <h1>Setting up your WordStar Mini</h1>
+  <p class="by">By <a href="https://providenthq.com" target="_blank" rel="noopener">Provident</a></p>
+  <h1>Setting up and using your WordStar Mini</h1>
   <div class="chips"><span class="chip">Nothing to install</span><span class="chip">Works offline</span><span class="chip">Charges over USB-C</span></div>
 </header>
+
+<nav class="toc" aria-label="Sections">
+  <a href="#setup"><small>Part 1</small><b>Set up</b><span>Meet, charge, wake, WiFi, pair</span></a>
+  <a href="#practice"><small>Part 2</small><b>Practice</b><span>The everyday routine</span></a>
+  <a href="#modes"><small>Part 3</small><b>Practice modes</b><span>Jumping around the programme</span></a>
+</nav>
+
+<div class="part-wrap" id="setup">
+  <div class="part"><small>Part 1</small><h2>Set up</h2></div>
+  <p>About ten minutes, once. Steps 4 and 5 are optional but worth doing.</p>
+</div>
 
 <ol class="steps">
 
 <li class="step">
-  <div class="step-head"><span class="num">1</span><h2>Meet the device</h2></div>
-  <p>Two buttons on the right-hand edge do everything: the <b>sun</b> button on top, the <b>power</b> button below it - the same symbols are printed on the buttons. Drag the model to look around.</p>
+  <div class="step-head"><span class="num">1</span><h3>Meet the device</h3></div>
+  <p>Two buttons on the right-hand edge do everything: <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> on top, <kbd class="btn"><svg class="glyph"><use href="#i-power"/></svg>Power</kbd> below it - the same symbols are printed on the buttons. Drag the model to look around.</p>
   <div class="scene" data-screen="grapheme" data-highlight="sun power"></div>
   <p class="scene-hint">drag to rotate</p>
   <ul class="labels">
-    <li><span class="dotc"></span><b>Sun</b> button - next / your child's turn</li>
-    <li><span class="dotc"></span><b>Power</b> button - hear it again</li>
+    <li><span class="dotc"></span><kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> - next / your child's turn</li>
+    <li><span class="dotc"></span><kbd class="btn"><svg class="glyph"><use href="#i-power"/></svg>Power</kbd> - hear it again</li>
     <li><span class="dotc" style="background:var(--accent)"></span>Screen - paper-like; it keeps its picture even when asleep</li>
     <li><span class="dotc" style="background:var(--muted)"></span>Memory card slot, above the buttons - leave the card in</li>
   </ul>
 </li>
 
 <li class="step">
-  <div class="step-head"><span class="num">2</span><h2>Charge it</h2><span class="time">first time: ~1 hour</span></div>
+  <div class="step-head"><span class="num">2</span><h3>Charge it</h3><span class="time">first time: ~1 hour</span></div>
   <p>Plug any USB-C cable into the port on the bottom edge. The little battery in the corner of the logo screen fills up as it charges. A full charge lasts many days of practice.</p>
   <div class="scene" data-screen="logo" data-highlight="usb" data-rx="22" data-ry="-24"></div>
   <div class="note"><b>Good to know:</b> the device goes to sleep by itself after five quiet minutes and shows the logo. It isn't off - press either button and it wakes instantly.</div>
 </li>
 
 <li class="step">
-  <div class="step-head"><span class="num">3</span><h2>Wake it up</h2></div>
+  <div class="step-head"><span class="num">3</span><h3>Wake it up</h3></div>
   <p>Press either button. You'll see the logo for a moment, then the first sound of the programme: the letter <b>s</b>, spoken aloud. That's the practice screen.</p>
   <div class="scene" data-screen="grapheme" data-highlight="screen"></div>
   <ul class="labels">
@@ -196,42 +221,21 @@
 </li>
 
 <li class="step">
-  <div class="step-head"><span class="num">4</span><h2>Practise together</h2><span class="time">the everyday bit</span></div>
-  <ul class="todo">
-    <li><span><kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> tap once - <b>your child's turn</b>. The device listens for three seconds ("Listening..."), then plays their voice back ("Here's you!"). You judge it together - there's no marking.</span></li>
-    <li><span><kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> tap again - a little chime and <b>on to the next sound</b>.</span></li>
-    <li><span><kbd class="btn"><svg class="glyph"><use href="#i-power"/></svg>Power</kbd> tap - <b>hear the sound again</b>, as often as you like.</span></li>
-  </ul>
-  <p>It remembers where you got to, so you can stop any time and carry on tomorrow.</p>
-</li>
-
-<li class="step">
-  <div class="step-head"><span class="num">5</span><h2>Jump ahead or back</h2><span class="time">for grown-ups</span></div>
-  <p>To skip to a different part of the programme, <b>hold the <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> button for two seconds</b>. A small table appears:</p>
-  <div class="scene" data-screen="jump" data-highlight="sun"></div>
-  <ul class="todo">
-    <li><span><b>Tap</b> sun or power to move through the sections: Start, Digraphs, Vowel teams, More vowels, Alt. spellings, Tricky spellings.</span></li>
-    <li><span><b>Hold</b> sun to go there - or <b>hold</b> power to go back to where you were.</span></li>
-  </ul>
-  <div class="note"><b>Tip:</b> "Start" is always the first choice, so hold sun, hold sun again = back to the very beginning.</div>
-</li>
-
-<li class="step">
-  <div class="step-head"><span class="num">6</span><h2>Connect it to your home WiFi</h2><span class="time">3 minutes, recommended</span></div>
+  <div class="step-head"><span class="num">4</span><h3>Connect it to your home WiFi</h3><span class="time">3 minutes, recommended</span></div>
   <p>Once it knows your WiFi, the device quietly checks for improvements about twice a day and installs them itself - new sounds included. You never have to do this again.</p>
   <ul class="todo">
-    <li><span><b>Hold the <kbd class="btn"><svg class="glyph"><use href="#i-power"/></svg>Power</kbd> button for two seconds.</b> The screen changes to <b>WiFi Mode</b> and shows a network name, a password and an address.</span></li>
+    <li><span><b>Hold <kbd class="btn"><svg class="glyph"><use href="#i-power"/></svg>Power</kbd> for two seconds.</b> The screen changes to <b>WiFi Mode</b> and shows a network name, a password and an address.</span></li>
     <li><span>On your phone, <b>join that WiFi network</b> (it's the device's own, very short-range network: name <code>WordStar Mini</code>, password <code>learnwords</code>).</span></li>
     <li><span>Open your browser and go to the address on the screen: <code>http://192.168.4.1</code></span></li>
     <li><span>Tap <b>Home WiFi</b>, choose your home network from the list, type its password and tap <b>Connect</b>. Leave "Automatically check for updates" ticked.</span></li>
-    <li><span>Back on the device, <b>hold power for two seconds</b> to leave WiFi Mode. Your phone will drop back to your normal WiFi by itself.</span></li>
+    <li><span>Back on the device, <b>hold <kbd class="btn"><svg class="glyph"><use href="#i-power"/></svg>Power</kbd> for two seconds</b> to leave WiFi Mode. Your phone drops back to your normal WiFi by itself.</span></li>
   </ul>
   <div class="scene" data-screen="wifi" data-highlight="power"></div>
   <div class="note"><b>Nothing to type on the device itself</b> - you use your own phone's keyboard. Your WiFi password is stored only on this device's memory card.</div>
 </li>
 
 <li class="step">
-  <div class="step-head"><span class="num">7</span><h2>Pair it with your WordStar account</h2><span class="time">optional</span></div>
+  <div class="step-head"><span class="num">5</span><h3>Pair it with your WordStar account</h3><span class="time">optional</span></div>
   <p>Pairing lets your child's practice recordings and progress appear in your WordStar dashboard.</p>
   <ul class="todo">
     <li><span>Wake the device and keep it next to your phone or laptop.</span></li>
@@ -241,14 +245,54 @@
   <p>From then on, practice syncs whenever the device is awake near a browser with your dashboard open.</p>
 </li>
 
+</ol>
+
+<div class="part-wrap" id="practice">
+  <div class="part"><small>Part 2</small><h2>Practice</h2></div>
+  <p>The everyday routine - a few minutes together, as often as you like.</p>
+</div>
+
+<ol class="steps" start="6">
+
 <li class="step">
-  <div class="step-head"><span class="num">8</span><h2>If something's not right</h2></div>
+  <div class="step-head"><span class="num">6</span><h3>Practise together</h3></div>
+  <p>The device shows a letter or letter group and says its sound. Then:</p>
+  <ul class="todo">
+    <li><span><kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> tap once - <b>your child's turn</b>. The device listens for three seconds ("Listening..."), then plays their voice back ("Here's you!"). You judge it together - there's no marking.</span></li>
+    <li><span><kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> tap again - a little chime and <b>on to the next sound</b>.</span></li>
+    <li><span><kbd class="btn"><svg class="glyph"><use href="#i-power"/></svg>Power</kbd> tap - <b>hear the sound again</b>, as often as you like.</span></li>
+  </ul>
+  <p>It remembers where you got to, so you can stop any time and carry on tomorrow. The programme runs through 124 sounds in the order children usually meet them - single letters first, then pairs like <b>sh</b> and <b>ai</b>, then the trickier spellings.</p>
+</li>
+
+</ol>
+
+<div class="part-wrap" id="modes">
+  <div class="part"><small>Part 3</small><h2>Practice modes</h2></div>
+  <p>For grown-ups: moving around the programme instead of going one sound at a time.</p>
+</div>
+
+<ol class="steps" start="7">
+
+<li class="step">
+  <div class="step-head"><span class="num">7</span><h3>Jump ahead or back</h3></div>
+  <p>To skip to a different part of the programme, <b>hold <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> for two seconds</b>. A small table appears:</p>
+  <div class="scene" data-screen="jump" data-highlight="sun"></div>
+  <ul class="todo">
+    <li><span><b>Tap</b> <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> or <kbd class="btn"><svg class="glyph"><use href="#i-power"/></svg>Power</kbd> to move through the sections: Start, Digraphs, Vowel teams, More vowels, Alt. spellings, Tricky spellings.</span></li>
+    <li><span><b>Hold</b> <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> to go there - or <b>hold</b> <kbd class="btn"><svg class="glyph"><use href="#i-power"/></svg>Power</kbd> to go back to where you were.</span></li>
+  </ul>
+  <div class="note"><b>Tip:</b> "Start" is always the first choice, so hold <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd>, hold <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> again = back to the very beginning. If you leave the table alone for ten seconds it closes by itself, changing nothing.</div>
+</li>
+
+<li class="step">
+  <div class="step-head"><span class="num">8</span><h3>If something's not right</h3></div>
   <table class="trouble">
     <tr><th>What you see</th><th>What to do</th></tr>
     <tr><td>Nothing happens when I press a button</td><td>Charge it for half an hour, then press again. A very flat battery needs a little charge before it will wake.</td></tr>
     <tr><td>It's showing the logo</td><td>It's just asleep. Press either button.</td></tr>
-    <tr><td>A sound shows "(no audio yet)"</td><td>That sound hasn't reached the device yet. Do step 6 if you haven't - it downloads new sounds itself. Or in WiFi Mode, Home WiFi, tap <b>Check for updates now</b>.</td></tr>
-    <tr><td>New router or WiFi password</td><td>Repeat step 6 - the new network replaces the old one.</td></tr>
+    <tr><td>A sound shows "(no audio yet)"</td><td>That sound hasn't reached the device yet. Do step 4 if you haven't - it downloads new sounds itself. Or in WiFi Mode, Home WiFi, tap <b>Check for updates now</b>.</td></tr>
+    <tr><td>New router or WiFi password</td><td>Repeat step 4 - the new network replaces the old one.</td></tr>
     <tr><td>Passing the device on to another family</td><td>In WiFi Mode, Home WiFi, use <b>Reset for a new family</b>: it forgets your WiFi, clears progress and recordings, and keeps everything else.</td></tr>
   </table>
 </li>
@@ -256,15 +300,15 @@
 </ol>
 
 <footer class="about">
-  <h3>About this guide</h3>
+  <h2>About this guide</h2>
   <dl>
-    <dt>Guide revision</dt><dd>2 (18 September 2026)</dd>
+    <dt>Guide revision</dt><dd>3 (18 September 2026)</dd>
     <dt>Written for firmware</dt><dd id="guide-fw">2026.09.18.10</dd>
     <dt>Latest firmware published</dt><dd id="latest-fw">checking...</dd>
     <dt>Latest sounds pack</dt><dd id="latest-content">checking...</dd>
-    <dt>Your device's version</dt><dd>WiFi Mode (hold power 2s) &rarr; Home WiFi &rarr; "Updates" shows it. A device on your WiFi updates itself; an older one just needs step 6.</dd>
+    <dt>Your device's version</dt><dd>WiFi Mode (hold <kbd class="btn"><svg class="glyph"><use href="#i-power"/></svg>Power</kbd> 2s) &rarr; Home WiFi &rarr; "Updates" shows it. A device on your WiFi updates itself; an older one just needs step 4.</dd>
   </dl>
-  <p class="credit">WordStar Mini is made by <a href="https://providenthq.com" rel="noopener">Provident</a>.</p>
+  <p class="credit">WordStar Mini is made by <a href="https://providenthq.com" target="_blank" rel="noopener">Provident</a>.</p>
 </footer>
 
 </div>
