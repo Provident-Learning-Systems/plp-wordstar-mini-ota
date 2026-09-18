@@ -68,7 +68,8 @@
 
   /* back (base): one row - SCAN ME turned upright on the left, the QR, the guide caption on
      the right - then the account line and the brand line. All body text at the lid's 10pt. */
-  .back { width: calc(var(--panel-back) + 2 * var(--bleed)); height: calc(var(--panel-back) + 2 * var(--bleed)); padding: calc(var(--bleed) + 3mm) calc(var(--bleed) + 2.4mm); justify-content: space-between; }
+  /* Pure black on the back (the front uses the warm --ink), so the text prints as solid K. */
+  .back { color: #000; width: calc(var(--panel-back) + 2 * var(--bleed)); height: calc(var(--panel-back) + 2 * var(--bleed)); padding: calc(var(--bleed) + 3mm) calc(var(--bleed) + 2.4mm); justify-content: space-between; }
   .back .cut { width: var(--panel-back); height: var(--panel-back); }
   .back .caption { font-size: 10pt; font-weight: 700; line-height: 1.2; margin: 0; text-wrap: balance; }
   .back .row { display: flex; align-items: center; justify-content: center; gap: 2mm; width: 100%; }
@@ -78,8 +79,8 @@
   .back .qr { width: 23mm; height: 23mm; display: block; flex: none; }
   /* Same size and weight as the caption above the QR: the account line leads straight into
      the address on the line below it. */
-  .back .sub { font-size: 10pt; font-weight: 700; line-height: 1.2; color: var(--ink); margin: 0; text-wrap: balance; }
-  .back .brand { font-size: 10pt; font-weight: 700; line-height: 1.2; color: var(--ink); letter-spacing: .01em; margin-top: 0.8mm; }
+  .back .sub { font-size: 10pt; font-weight: 700; line-height: 1.2; color: inherit; margin: 0; text-wrap: balance; }
+  .back .brand { font-size: 10pt; font-weight: 700; line-height: 1.2; color: inherit; letter-spacing: .01em; margin-top: 0.8mm; }
   /* The account block is a solid rounded panel in a soft green that sits with the logo's "r"
      (a lighter tint than the letter itself, chosen for print). Dark ink on it. */
   .back .account { --logo-green: #A1D99B; width: 100%; background: var(--logo-green); border: 0.5mm solid var(--logo-green); border-radius: 3mm; padding: 1.2mm 1mm 1.4mm; }
