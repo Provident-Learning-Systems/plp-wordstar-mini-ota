@@ -152,6 +152,10 @@
   .labels li { display: flex; gap: 10px; align-items: center; }
   .labels .dotc { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--hint); }
 
+  /* Small right-aligned link at the foot of every step card. */
+  .totop { display: block; text-align: right; margin-top: 16px; font-size: 13px; color: var(--muted); text-decoration: none; }
+  .totop:hover { color: var(--accent); }
+
   table.trouble { width: 100%; border-collapse: collapse; font-size: 15px; margin-top: 10px; }
   table.trouble th, table.trouble td { text-align: left; padding: 9px 6px; border-bottom: 1px solid var(--border); vertical-align: top; }
   table.trouble th { color: var(--muted); font-size: 13px; text-transform: uppercase; letter-spacing: .05em; }
@@ -177,7 +181,7 @@
   <symbol id="i-power" viewBox="0 0 24 24"><g stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"><path d="M12 3.5v8.5"/><path d="M6.8 6.6a7.4 7.4 0 1 0 10.4 0"/></g></symbol>
 </svg>
 
-<header>
+<header id="top">
   <img class="logo" src="wordstar-mini-logo.png" alt="WordStar Mini" width="800" height="420">
   <p class="by">By <a href="https://providenthq.com" target="_blank" rel="noopener">Provident</a></p>
   <h1>Setting up and using your WordStar Mini</h1>
@@ -213,6 +217,7 @@
     <li><span class="dotc" style="background:var(--accent)"></span>Screen - paper-like; it keeps its picture even when asleep</li>
     <li><span class="dotc" style="background:var(--muted)"></span>Memory card slot, above the buttons - leave the card in</li>
   </ul>
+  <a class="totop" href="#top">&uarr; Back to top</a>
 </li>
 
 <li class="step">
@@ -220,6 +225,7 @@
   <p>Plug any USB-C cable into the port on the bottom edge. The little battery in the corner of the logo screen fills up as it charges. A full charge lasts many days of practice.</p>
   <div class="scene" data-screen="logo" data-highlight="usb" data-rx="22" data-ry="-24"></div>
   <div class="note"><b>Good to know:</b> the device goes to sleep by itself after five quiet minutes and shows the logo. It isn't off - press either button and it wakes instantly.</div>
+  <a class="totop" href="#top">&uarr; Back to top</a>
 </li>
 
 <li class="step">
@@ -230,6 +236,7 @@
     <li><span class="dotc" style="background:var(--accent)"></span>Top left: how far along you are, e.g. <code>1 / 124</code></li>
     <li><span class="dotc" style="background:var(--accent)"></span>Bottom right: the ▶ and 🔊 marks line up with the two buttons</li>
   </ul>
+  <a class="totop" href="#top">&uarr; Back to top</a>
 </li>
 
 <li class="step">
@@ -244,6 +251,7 @@
   </ul>
   <div class="scene" data-screen="wifi" data-highlight="power"></div>
   <div class="note"><b>Nothing to type on the device itself</b> - you use your own phone's keyboard. Your WiFi password is stored only on this device's memory card.</div>
+  <a class="totop" href="#top">&uarr; Back to top</a>
 </li>
 
 <li class="step">
@@ -255,6 +263,7 @@
     <li><span>Pick <b>WordStar</b> from the list. Pairing finishes on its own - the device carries its own code, there's nothing to type.</span></li>
   </ul>
   <p>From then on, practice syncs whenever the device is awake near a browser with your dashboard open.</p>
+  <a class="totop" href="#top">&uarr; Back to top</a>
 </li>
 
 </ol>
@@ -275,6 +284,7 @@
     <li><span><kbd class="btn"><svg class="glyph"><use href="#i-power"/></svg>Power</kbd> tap - <b>hear the sound again</b>, as often as you like.</span></li>
   </ul>
   <p>It remembers where you got to, so you can stop any time and carry on tomorrow. The programme runs through 124 sounds in the order children usually meet them - single letters first, then pairs like <b>sh</b> and <b>ai</b>, then the trickier spellings.</p>
+  <a class="totop" href="#top">&uarr; Back to top</a>
 </li>
 
 </ol>
@@ -295,6 +305,7 @@
     <li><span><b>Hold</b> <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> to go there - or <b>hold</b> <kbd class="btn"><svg class="glyph"><use href="#i-power"/></svg>Power</kbd> to go back to where you were.</span></li>
   </ul>
   <div class="note"><b>Tip:</b> "Start" is always the first choice, so hold <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd>, hold <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> again = back to the very beginning. If you leave the table alone for ten seconds it closes by itself, changing nothing.</div>
+  <a class="totop" href="#top">&uarr; Back to top</a>
 </li>
 
 <li class="step">
@@ -307,6 +318,7 @@
     <tr><td>New router or WiFi password</td><td>Repeat step 4 - the new network replaces the old one.</td></tr>
     <tr><td>Passing the device on to another family</td><td>In WiFi Mode, Home WiFi, use <b>Reset for a new family</b>: it forgets your WiFi, clears progress and recordings, and keeps everything else.</td></tr>
   </table>
+  <a class="totop" href="#top">&uarr; Back to top</a>
 </li>
 
 </ol>
