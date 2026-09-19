@@ -1,0 +1,14 @@
+# Words for the Initial Sounds test, one per line, in this order - the school assessment app's
+# list. The adult says the word (the device stays silent in a test; the word is on the screen as
+# the adult's cue) and the child gives its first sound. Lines starting with # are ignored. The
+# Initial Sounds practice uses the letter pictures instead. Shipped as content.
+can
+we
+he
+see
+my
+it
+look
+get
+at
+up

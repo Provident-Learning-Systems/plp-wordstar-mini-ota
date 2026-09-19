@@ -1,0 +1,21 @@
+# Items for the Rhyming checks, in this order - the school assessment app's list.
+#   pair,<word>,<word>,yes|no   Rhyming Pairs: the device says both words, the child says
+#                               whether they rhyme (yes/no is for the record; the adult judges)
+#   make,<word>,<example>       Rhyming Make: the device says the word, the child offers a rhyme;
+#                               <example> is the rhyme the practice sentence models
+# Practice runs every line the way the task itself sounds: the two words one after the other
+# ("fin... win" - for a make line, the word and its example, "can... man"), then "Do they
+# rhyme?", a one-second pause for the child to answer, then "They rhyme!" or "They don't
+# rhyme!" (make lines always rhyme). Clips: audio/rw_<word>.pcm for every word here, plus
+# audio/rh_question.pcm, rh_yes.pcm and rh_no.pcm - firmware/tools/elevenlabs_letter_clips.py
+# --rhyming makes them. Lines starting with # are ignored. Shipped as content.
+pair,fin,win,yes
+pair,pig,cot,no
+pair,bag,his,no
+pair,soap,bell,no
+pair,me,see,yes
+make,can,man
+make,go,no
+make,cake,lake
+make,dog,log
+make,bug,rug
