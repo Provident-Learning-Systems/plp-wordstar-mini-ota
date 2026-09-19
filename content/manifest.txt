@@ -1,6 +1,7 @@
-version ca23c1cae9ed
+version 384befcfedb3
 phonics_list.csv 2395 d9906428342ff09d500a0ebad25e1333
 letter_order.txt 511 ccda3b477da9f918ffb404a2e67574e9
+sight_words.txt 384 8151a2290ee5e7e692b028184e33be91
 audio/_celebrate.pcm 26250 707a9040b0580f65e92fcc77ed4b8605
 audio/_tick.pcm 1448 ca50c9a0b5c634c0708533471c4ee133
 audio/_tryagain.pcm 9288 8c794a0fa0286712a47887a070f552f5
@@ -72,6 +73,16 @@ audio/p.pcm 78514 67dc356f2b4132f5a2f2b330f1f68cd4
 audio/r.pcm 38548 6ddbb287617c5913af3a74bb90266b52
 audio/s.pcm 15774 a4dca3a132ed305dabd1979722445299
 audio/sh.pcm 26468 8df31af9a9fcc4f8bc516653dc0a2ba7
+audio/sw_a.pcm 25208 24df378b7542441f9deab01f8affb76e
+audio/sw_and.pcm 29862 743a8e94b137754bb46fd6e7d9bc7548
+audio/sw_i.pcm 23044 6eb21516c122357b4b48cb90c7ccd0de
+audio/sw_in.pcm 18822 47091120c3d17d742d61ea305e86672a
+audio/sw_is.pcm 27612 524dd7d5acf15a22409ad03b03d27233
+audio/sw_me.pcm 21250 37dcf0d217395d2fc6b72754b74379a6
+audio/sw_stop.pcm 24494 dec5c13a8f4a400482b80d82f117531e
+audio/sw_the.pcm 29714 c4dffa014793b292ff8a5c933585df95
+audio/sw_to.pcm 30854 72600832a0cefae11357b96783c999c5
+audio/sw_you.pcm 25522 362ceeffcbfb847b27df252d7e0e2d67
 audio/t.pcm 4008 eb84968b55dbb10ba9bf966ca5c0e1eb
 audio/th_voiced.pcm 47180 194c46a21c5cd0f2c8aa91b919370df0
 audio/th_voiceless.pcm 57724 78eb91ef8afd40f3ddc0e6df1434d1f6
