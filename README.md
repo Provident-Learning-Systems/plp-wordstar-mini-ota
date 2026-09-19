@@ -8,7 +8,7 @@ the parent-facing setup guide:
 |---|---|
 | `manifest.json` | Current firmware version, its `.bin` URL and MD5. Devices with home WiFi check it roughly every 12 hours (and on demand from the WiFi panel's "Check for updates now"). |
 | `WordStarMini-<version>.bin` | One application image per released version. |
-| `content/manifest.txt`, `content/phonics_list.csv`, `content/letter_order.txt`, `content/audio/*.pcm` | The phonics content (sounds, the programme list, and the letter order used by the letter checks). Devices on 2026.09.18.8+ fetch any file that is missing from their SD card or whose MD5 changed, during the same check. |
+| `content/manifest.txt`, `content/phonics_list.csv`, `content/letter_order.txt`, `content/audio/*.pcm`, `content/pictures/*.pbm` | The phonics content: the sounds (mono clips with an 8-byte `WSPCM` header since 2026.09.19.4 - older firmware plays them wrongly, which is why devices update firmware before content), the programme list, and the letter order and letter-word pictures used by the letter checks. Devices on 2026.09.18.8+ fetch any file that is missing from their SD card or whose MD5 changed, once their firmware is current. |
 | `setup/index.html` | The **setup guide** for families, served by GitHub Pages at <https://provident-learning-systems.github.io/plp-wordstar-mini-ota/setup/> - this is what the QR code in the box points to. Its footer shows which firmware it was written for and, live from `manifest.json`, the latest published firmware. |
 
 Publishing a compiled binary or the audio here does not expose any source
