@@ -82,7 +82,7 @@
   .step .time { color: var(--muted); font-size: 14px; margin-left: auto; white-space: nowrap; }
   .todo { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 8px; }
   .todo li { display: flex; gap: 10px; align-items: flex-start; }
-  .todo li::before { content: ""; flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); margin-top: 9px; }
+  .todo li::before { content: ""; flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); margin-top: 10px; }
   .todo b { font-weight: 800; }
   .note { background: var(--hint-soft); border-radius: 10px; padding: 10px 14px; font-size: 15px; margin-top: 14px; }
   .note b { color: var(--hint); }
@@ -147,9 +147,10 @@
   .scr.wifi .t { font-size: 15px; font-weight: 800; margin-bottom: 4px; }
   .scr.wifi b { font-size: 12px; }
 
-  .labels { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px 14px; margin: 10px 0 0; padding: 0; list-style: none; font-size: 15px; }
-  .labels li { display: flex; gap: 8px; align-items: center; }
-  .labels .dotc { flex: none; width: 12px; height: 12px; border-radius: 50%; background: var(--hint); }
+  /* One label per line, like the .todo lists elsewhere. */
+  .labels { display: grid; grid-template-columns: 1fr; gap: 8px; margin: 10px 0 0; padding: 0; list-style: none; font-size: 15px; }
+  .labels li { display: flex; gap: 10px; align-items: center; }
+  .labels .dotc { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--hint); }
 
   table.trouble { width: 100%; border-collapse: collapse; font-size: 15px; margin-top: 10px; }
   table.trouble th, table.trouble td { text-align: left; padding: 9px 6px; border-bottom: 1px solid var(--border); vertical-align: top; }
@@ -189,9 +190,9 @@
 </header>
 
 <nav class="toc" aria-label="Sections">
-  <a href="#setup"><small>Part 1</small><b>Set up</b><span>Meet, charge, wake, WiFi, pair</span></a>
-  <a href="#practice"><small>Part 2</small><b>Practice</b><span>The everyday routine</span></a>
-  <a href="#modes"><small>Part 3</small><b>Practice modes</b><span>Jumping around the programme</span></a>
+  <a href="#setup"><small>Jump to: Part 1</small><b>Set up</b></a>
+  <a href="#practice"><small>Jump to: Part 2</small><b>Practice</b></a>
+  <a href="#modes"><small>Jump to: Part 3</small><b>Practice modes</b></a>
 </nav>
 
 <div class="part-wrap" id="setup">
@@ -202,7 +203,7 @@
 <ol class="steps">
 
 <li class="step">
-  <div class="step-head"><span class="num">1</span><h3>Meet the device</h3></div>
+  <div class="step-head"><span class="num">1</span><h3>Meet your device</h3></div>
   <p>Two buttons on the right-hand edge do everything: <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> on top, <kbd class="btn"><svg class="glyph"><use href="#i-power"/></svg>Power</kbd> below it - the same symbols are printed on the buttons. Drag the model to look around.</p>
   <div class="scene" data-screen="grapheme" data-highlight="sun power"></div>
   <p class="scene-hint">drag to rotate</p>
@@ -287,10 +288,10 @@
 
 <li class="step">
   <div class="step-head"><span class="num">7</span><h3>Jump ahead or back</h3></div>
-  <p>To skip to a different part of the programme, <b>hold <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> for two seconds</b>. A small table appears:</p>
+  <p>To skip to a different part of the programme, <b>hold <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> for two seconds</b>. A small table appears with the programme's sections: Start, Digraphs, Vowel teams, More vowels, Alt. spellings, Tricky spellings.</p>
   <div class="scene" data-screen="jump" data-highlight="sun"></div>
   <ul class="todo">
-    <li><span><b>Tap</b> <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> or <kbd class="btn"><svg class="glyph"><use href="#i-power"/></svg>Power</kbd> to move through the sections: Start, Digraphs, Vowel teams, More vowels, Alt. spellings, Tricky spellings.</span></li>
+    <li><span><b>Tap</b> <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> or <kbd class="btn"><svg class="glyph"><use href="#i-power"/></svg>Power</kbd> to move through the sections.</span></li>
     <li><span><b>Hold</b> <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> to go there - or <b>hold</b> <kbd class="btn"><svg class="glyph"><use href="#i-power"/></svg>Power</kbd> to go back to where you were.</span></li>
   </ul>
   <div class="note"><b>Tip:</b> "Start" is always the first choice, so hold <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd>, hold <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> again = back to the very beginning. If you leave the table alone for ten seconds it closes by itself, changing nothing.</div>
@@ -313,7 +314,7 @@
 <footer class="about">
   <h2>About this guide</h2>
   <dl>
-    <dt>Guide revision</dt><dd>3 (18 September 2026)</dd>
+    <dt>Guide revision</dt><dd>4 (19 September 2026)</dd>
     <dt>Written for firmware</dt><dd id="guide-fw">2026.09.18.10</dd>
     <dt>Latest firmware published</dt><dd id="latest-fw">checking...</dd>
     <dt>Latest sounds pack</dt><dd id="latest-content">checking...</dd>
