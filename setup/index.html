@@ -138,7 +138,7 @@
   .scr .icons { position: absolute; right: 8px; bottom: 10px; display: grid; gap: 8px; justify-items: end; }
   .scr .icons svg { width: 16px; height: 16px; fill: var(--ink); }
   .scr .logo-img { position: absolute; left: 10px; right: 10px; top: 34px; width: 130px; filter: grayscale(1) contrast(1.1); }
-  .scr .by { position: absolute; left: 0; right: 0; top: 108px; text-align: center; font-size: 8px; letter-spacing: .18em; font-weight: 700; }
+  .scr .by { position: absolute; left: 0; right: 0; top: 108px; text-align: center; font-size: 8.5px; letter-spacing: .14em; font-weight: 800; }
   .scr .batt { position: absolute; right: 8px; top: 6px; width: 20px; height: 10px; border: 1.5px solid var(--ink); border-radius: 2px; }
   .scr .batt::after { content: ""; position: absolute; left: 2px; top: 2px; bottom: 2px; width: 70%; background: var(--ink); }
   .scr .batt::before { content: ""; position: absolute; right: -4px; top: 2px; width: 2px; height: 4px; background: var(--ink); }
@@ -273,6 +273,7 @@
     <li><span>Pick <b>WordStar</b> from the list. Pairing finishes on its own - the device carries its own code, there's nothing to type.</span></li>
   </ul>
   <p>From then on, practice syncs whenever the device is awake near a browser with your dashboard open.</p>
+  <p>Only the practice programme syncs. The checks (step 8) stay on the device: nothing from them appears in your account.</p>
   <a class="totop" href="#top">&uarr; Back to top</a>
 </li>
 
@@ -351,7 +352,7 @@
   <p>How to run one:</p>
   <ul class="todo">
     <li><span><b>Hold <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd></b> to open the table (step 7), <b>tap <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd></b> or <kbd class="btn"><svg class="glyph"><use href="#i-power"/></svg>Power</kbd> to reach the check you want, then <b>hold <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd></b>.</span></li>
-    <li><span>For the Letter Sounds and Letter Names practices, choose <b>abc</b> or <b>ABC</b> (tap either button to switch), then <b>hold <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd></b> to start. Everything else starts straight away. The letter, picture or word appears large, with a counter in the corner.</span></li>
+    <li><span>For the Letter Sounds and Letter Names practices, choose <b>abc</b> or <b>ABC</b> (tap either button to switch; the Letters test needs no choice - it runs lowercase, then uppercase, by itself), then <b>hold <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd></b> to start. Everything else starts straight away. The letter, picture or word appears large, with a counter in the corner.</span></li>
     <li><span><b>Practice:</b> the device says the sound, name or word (for Initial Sounds, just the word - your child works out the first sound). <kbd class="btn"><svg class="glyph"><use href="#i-power"/></svg>Power</kbd> says it again; <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> is your child's turn (recorded and played back), then <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> again for the next one - just like everyday practice.</span></li>
     <li><span><b>Test:</b> nothing plays. Ask ("what sound does this letter make?", "what's this letter called?", "what's this?", "what sound does apple start with?", "can you read this word?") and listen. (Find and the Rhyming tests are the exception: the device says the word or words, since that is the question; <kbd class="btn"><svg class="glyph"><use href="#i-power"/></svg>Power</kbd> says it again. In Rhyming Make, tap <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> once to record your child's rhyme and hear it back, then again to move on.) <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> = next. <kbd class="btn"><svg class="glyph"><use href="#i-power"/></svg>Power</kbd> = <b>back</b> to the previous one (the screen shows a ◀ beside it; from the first item it goes round to the last) - use it when you want to ask again; the device notes that the item needed another go.</span></li>
     <li><span>At the end of each test: "All done!" and a chime, with the next test named underneath in All Skills. <b>Tap <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd></b> to go on - or, after the last test, to start again for the next child, no need to go through the table again. Nothing on the device shows scores; the results stay on its memory card for the specialist.</span></li>
@@ -367,7 +368,8 @@
     <tr><th>What you see</th><th>What to do</th></tr>
     <tr><td>Nothing happens when I press a button</td><td>Charge it for half an hour, then press again. A very flat battery needs a little charge before it will wake.</td></tr>
     <tr><td>It's showing the logo</td><td>It's just asleep. Press either button.</td></tr>
-    <tr><td>It shows a big letter but says nothing</td><td>That's All Skills, the silent letter test it wakes into (step 8). Hold <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd>, tap to <b>Full Progression</b>, hold <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> for the spoken practice programme.</td></tr>
+    <tr><td>It shows a big letter, word or picture but says nothing</td><td>That's a test - they are silent on purpose (step 8); the device wakes into All Skills. Hold <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd>, tap to <b>Full Progression</b>, hold <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> for the spoken practice programme.</td></tr>
+    <tr><td>The screen says "Setting up device..."</td><td>It's copying its sounds onto the memory card after an update. Leave it for a minute; it carries on by itself.</td></tr>
     <tr><td>A sound shows "(no audio yet)"</td><td>That sound hasn't reached the device yet. Do step 4 if you haven't - it downloads new sounds itself. Or in WiFi Mode, Home WiFi, tap <b>Check for updates now</b>.</td></tr>
     <tr><td>New router or WiFi password</td><td>Repeat step 4 - the new network replaces the old one.</td></tr>
     <tr><td>Passing the device on to another family</td><td>In WiFi Mode, Home WiFi, use <b>Reset for a new family</b>: it forgets your WiFi, clears progress and recordings, and keeps everything else.</td></tr>
@@ -380,7 +382,7 @@
 <footer class="about">
   <h2>About this guide</h2>
   <dl>
-    <dt>Guide revision</dt><dd>16 (19 September 2026)</dd>
+    <dt>Guide revision</dt><dd>17 (20 September 2026)</dd>
     <dt>Written for firmware</dt><dd id="guide-fw">2026.09.19.23</dd>
     <dt>Latest firmware published</dt><dd id="latest-fw">checking...</dd>
     <dt>Latest sounds pack</dt><dd id="latest-content">checking...</dd>
