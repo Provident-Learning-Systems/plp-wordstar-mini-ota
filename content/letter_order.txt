@@ -1,5 +1,6 @@
 # Order of the 26 letters for the letter checks (Sounds, Names and Words, practice and test),
 # matching the sequence the school assessment app uses. Lines starting with # are ignored;
 # letters may be separated by spaces or newlines, case doesn't matter. Any letter left out
-# here is appended in programme order, so nothing is ever skipped.
+# here is appended in programme order, so nothing is ever skipped. Shipped as content: it reaches
+# devices through the provisioning image (USB flash) and the OTA content pack alike.
 h e m t i p q u o c w b x v j s g n y k z r a f l d

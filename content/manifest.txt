@@ -1,6 +1,6 @@
-version 3a2df2278953
+version ca23c1cae9ed
 phonics_list.csv 2395 d9906428342ff09d500a0ebad25e1333
-letter_order.txt 395 3971793bf3b10d0383469f8827caa524
+letter_order.txt 511 ccda3b477da9f918ffb404a2e67574e9
 audio/_celebrate.pcm 26250 707a9040b0580f65e92fcc77ed4b8605
 audio/_tick.pcm 1448 ca50c9a0b5c634c0708533471c4ee133
 audio/_tryagain.pcm 9288 8c794a0fa0286712a47887a070f552f5
