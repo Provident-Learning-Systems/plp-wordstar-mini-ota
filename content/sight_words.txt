@@ -1,14 +1,16 @@
-# Words for the Sight Words check (practice and test), one per line, shown in this order -
-# the school assessment app's list. Lines starting with # are ignored. Each word needs a clip
-# audio/sw_<word>.pcm (lowercase) for practice mode; firmware/tools/elevenlabs_letter_clips.py
+# Words for the Sight Words checks, one per line, shown in this order - the school assessment
+# app's list. Each line is the word followed by the three other words shown beside it in the
+# "Find" check (the child hears the word and points to it among the four), comma-separated;
+# a word alone is fine if it is never used in Find. Lines starting with # are ignored. Each
+# word needs a clip audio/sw_<word>.pcm (lowercase); firmware/tools/elevenlabs_letter_clips.py
 # --sight-words makes them. Shipped as content, like letter_order.txt.
-the
-you
-a
-I
-in
-to
-and
-stop
-is
-me
+the,you,to,me
+you,the,and,is
+a,I,in,to
+I,a,is,in
+in,and,is,me
+to,the,stop,a
+and,in,you,stop
+stop,is,and,to
+is,I,to,me
+me,the,you,in
