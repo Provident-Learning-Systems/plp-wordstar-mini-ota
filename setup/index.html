@@ -128,8 +128,13 @@
   .scene-hint { text-align: center; color: var(--muted); font-size: 13px; margin: 0 0 6px; }
 
   .scr { position: absolute; inset: 0; font-family: "Nunito", sans-serif; color: var(--ink); }
-  .scr .pos { position: absolute; left: 6px; top: 4px; font-size: 9px; }
-  .scr .big { position: absolute; left: 0; right: 28px; top: 30px; text-align: center; font-size: 86px; font-weight: 700; line-height: 1; }
+  .scr .pos { position: absolute; left: 6px; top: 3px; font-size: 15px; font-weight: 700; }
+  .scr .tag { position: absolute; right: 6px; top: 3px; font-size: 15px; font-weight: 700; }
+  .scr .big { position: absolute; left: 0; right: 28px; top: 30px; text-align: center; font-size: 104px; font-weight: 700; line-height: 1; }
+  .scr .grid { position: absolute; left: 4px; right: 30px; top: 34px; bottom: 4px; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; font-size: 26px; font-weight: 700; }
+  .scr .grid span { display: grid; place-items: center; }
+  .scr .grid span:nth-child(odd) { border-right: 1px dotted var(--ink); }
+  .scr .grid span:nth-child(-n+2) { border-bottom: 1px dotted var(--ink); }
   .scr .icons { position: absolute; right: 8px; bottom: 10px; display: grid; gap: 8px; justify-items: end; }
   .scr .icons svg { width: 16px; height: 16px; fill: var(--ink); }
   .scr .logo-img { position: absolute; left: 10px; right: 10px; top: 34px; width: 130px; filter: grayscale(1) contrast(1.1); }
@@ -137,7 +142,7 @@
   .scr .batt { position: absolute; right: 8px; top: 6px; width: 20px; height: 10px; border: 1.5px solid var(--ink); border-radius: 2px; }
   .scr .batt::after { content: ""; position: absolute; left: 2px; top: 2px; bottom: 2px; width: 70%; background: var(--ink); }
   .scr .batt::before { content: ""; position: absolute; right: -4px; top: 2px; width: 2px; height: 4px; background: var(--ink); }
-  .scr.jump .g { position: absolute; left: 0; right: 0; top: 4px; text-align: center; font-size: 30px; font-weight: 700; line-height: 1; }
+  .scr.jump .g { position: absolute; left: 0; right: 0; top: 6px; text-align: center; font-size: 24px; font-weight: 700; line-height: 1; }
   .scr.jump .lbl { position: absolute; left: 0; right: 0; top: 36px; text-align: center; font-size: 15px; font-weight: 700; }
   .scr.jump table { position: absolute; left: 10px; right: 10px; top: 62px; border-collapse: collapse; font-size: 12px; font-weight: 700; width: calc(100% - 20px); }
   .scr.jump th { font-weight: 800; border-bottom: 1.5px solid var(--ink); padding: 0 0 2px; }
@@ -209,11 +214,12 @@
 <li class="step">
   <div class="step-head"><span class="num">1</span><h3>Meet your device</h3></div>
   <p>Two buttons on the right-hand edge do everything: <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> on top, <kbd class="btn"><svg class="glyph"><use href="#i-power"/></svg>Power</kbd> below it - the same symbols are printed on the buttons. Drag the model to look around.</p>
-  <div class="scene" data-screen="grapheme" data-highlight="sun power"></div>
+  <div class="scene" data-screen="letter" data-highlight="sun power"></div>
   <p class="scene-hint">drag to rotate</p>
   <ul class="labels">
-    <li><span class="dotc"></span><kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> - next / your child's turn</li>
-    <li><span class="dotc"></span><kbd class="btn"><svg class="glyph"><use href="#i-power"/></svg>Power</kbd> - hear it again</li>
+    <li><span class="dotc"></span><kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> - next (and, in practice, your child's turn)</li>
+    <li><span class="dotc"></span><kbd class="btn"><svg class="glyph"><use href="#i-power"/></svg>Power</kbd> - back one in a test, hear it again in practice</li>
+    <li><span class="dotc"></span>Hold either for two seconds: <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> opens the list of activities, <kbd class="btn"><svg class="glyph"><use href="#i-power"/></svg>Power</kbd> opens WiFi Mode - from any screen</li>
     <li><span class="dotc" style="background:var(--accent)"></span>Screen - paper-like; it keeps its picture even when asleep</li>
     <li><span class="dotc" style="background:var(--muted)"></span>Memory card slot, above the buttons - leave the card in</li>
   </ul>
@@ -231,10 +237,10 @@
 <li class="step">
   <div class="step-head"><span class="num">3</span><h3>Wake it up</h3></div>
   <p>Press either button. You'll see the logo for a moment, then a large letter <b>h</b>, silently: the device wakes straight into <b>All Skills</b> (step 8), the run of checks a specialist does with a child, starting with the letters. To get to the spoken practice programme instead, <b>hold <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> for two seconds</b> to open the table from step 7, tap <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> or <kbd class="btn"><svg class="glyph"><use href="#i-power"/></svg>Power</kbd> until it shows <b>Full Progression</b>, then <b>hold <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd></b>: the programme picks up where your child left off - the first time, the letter <b>s</b>, spoken aloud. That's the practice screen.</p>
-  <div class="scene" data-screen="grapheme" data-highlight="screen"></div>
+  <div class="scene" data-screen="letter" data-highlight="screen"></div>
   <ul class="labels">
-    <li><span class="dotc" style="background:var(--accent)"></span>Top left: how far along you are, e.g. <code>1 / 124</code></li>
-    <li><span class="dotc" style="background:var(--accent)"></span>Bottom right: the ▶ and 🔊 marks line up with the two buttons (a check shows only ▶ when it is silent)</li>
+    <li><span class="dotc" style="background:var(--accent)"></span>Top left: how far along you are, e.g. <code>1 / 52</code>; top right: what is being asked (<code>abc</code>, <code>Read</code>, <code>Find</code>...)</li>
+    <li><span class="dotc" style="background:var(--accent)"></span>Bottom right: two marks that line up with the two buttons - ▶ next, and ◀ back in a test or 🔊 hear-again in practice</li>
   </ul>
   <a class="totop" href="#top">&uarr; Back to top</a>
 </li>
@@ -278,6 +284,7 @@
 <li class="step">
   <div class="step-head"><span class="num">6</span><h3>Practise together</h3></div>
   <p>From the practice screen (<b>Full Progression</b> in the table, see step 3), the device shows a letter or letter group and says its sound. Then:</p>
+  <div class="scene" data-screen="grapheme" data-highlight="sun power"></div>
   <ul class="todo">
     <li><span><kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> tap once - <b>your child's turn</b>. The device listens for three seconds ("Listening..."), then plays their voice back ("Here's you!"). You judge it together - there's no marking.</span></li>
     <li><span><kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> tap again - a little chime and <b>on to the next sound</b>.</span></li>
@@ -311,6 +318,7 @@
 <li class="step">
   <div class="step-head"><span class="num">8</span><h3>Letter checks</h3><span class="time">with a grown-up</span></div>
   <p>Short runs, one item at a time, in the same order the school assessment uses. The device wakes straight into <b>All Skills</b>: every test in one sitting - <b>Letters</b> (the 26 letters in lowercase, then the same 26 as capitals; you ask for each letter's name and its sound), <b>Letter Words</b> (a picture: apple, ball, cat... your child says the word), <b>Initial Sounds</b> (ten words shown for you to say - can, we, he... your child gives the sound the word starts with), <b>Sight Words Read</b> (a word on a card - the, you, and... your child reads it) and <b>Find</b> (four words, the device says one, your child points to it), <b>Rhyming Pairs</b> (the device says two words - "fin... win" - your child says whether they rhyme) and <b>Rhyming Make</b> (the device says a word, your child says one that rhymes). Each test ends on "All done!" naming the next; tap <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd> to go on. Every test is also in the table on its own, and so are the <b>practices</b>, where the device says each item and listens to your child: Letter Sounds and Letter Names (abc or ABC), Letter Words, Initial Sounds (with pictures), Sight Words, Rhyming ("fin... win... Do they rhyme?" - a moment for your child to answer - "They rhyme!"). In a test the device stays silent and you do the asking - except Find and the Rhyming tests, where the device says the word because that is the question. The corner of the screen says what to do: <b>abc</b>/<b>ABC</b>, <b>Say</b>, <b>Read</b>, <b>Find</b>, <b>Sound</b>, <b>Rhyme?</b>, <b>Rhyme</b>.</p>
+  <div class="scene" data-screen="find" data-highlight="screen"></div>
   <ul class="todo">
     <li><span><b>Hold <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd></b> to open the table (step 7). The checks come right after Start, each as a Test then a Practice row: <b>tap <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd></b> to reach the one you want, then <b>hold <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd></b>.</span></li>
     <li><span>For the Letter Sounds and Letter Names practices, choose <b>abc</b> or <b>ABC</b> (tap either button to switch), then <b>hold <kbd class="btn"><svg class="glyph"><use href="#i-sun"/></svg>Sun</kbd></b> to start. Everything else starts straight away. The letter, picture or word appears large, with a counter in the corner.</span></li>
@@ -342,7 +350,7 @@
 <footer class="about">
   <h2>About this guide</h2>
   <dl>
-    <dt>Guide revision</dt><dd>14 (19 September 2026)</dd>
+    <dt>Guide revision</dt><dd>15 (19 September 2026)</dd>
     <dt>Written for firmware</dt><dd id="guide-fw">2026.09.19.18</dd>
     <dt>Latest firmware published</dt><dd id="latest-fw">checking...</dd>
     <dt>Latest sounds pack</dt><dd id="latest-content">checking...</dd>
@@ -358,12 +366,18 @@
   const SUN = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><g stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></g></svg>';
   const POWER = '<svg viewBox="0 0 24 24"><g stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"><path d="M12 3.5v8.5"/><path d="M6.8 6.6a7.4 7.4 0 1 0 10.4 0"/></g></svg>';
   const PLAY = '<svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg>';
+  const BACK = '<svg viewBox="0 0 24 24"><path d="M18 4L4 12l14 8z"/></svg>';
   const SPEAKER = '<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
 
   const screens = {
     logo: '<div class="scr"><div class="batt"></div><img class="logo-img" src="wordstar-mini-logo.png" alt=""><div class="by">BY PROVIDENT</div></div>',
+    // What the device wakes into: All Skills, first letter, silent - play and back, no speaker.
+    letter: '<div class="scr"><div class="pos">1 / 52</div><div class="tag">abc</div><div class="big">h</div><div class="icons">' + PLAY + BACK + '</div></div>',
+    // The spoken practice programme.
     grapheme: '<div class="scr"><div class="pos">1 / 124</div><div class="big">s</div><div class="icons">' + PLAY + SPEAKER + '</div></div>',
-    jump: '<div class="scr jump"><div class="g">s</div><div class="lbl">Start</div><table><tr><th></th><th>Tap</th><th>Hold</th></tr>' +
+    // Sight Words - Find: four words, the device says one.
+    find: '<div class="scr"><div class="pos">1 / 10</div><div class="tag">Find</div><div class="grid"><span>you</span><span>the</span><span>me</span><span>to</span></div><div class="icons">' + PLAY + SPEAKER + '</div></div>',
+    jump: '<div class="scr jump"><div class="g">All Skills</div><div class="lbl">Test</div><table><tr><th></th><th>Tap</th><th>Hold</th></tr>' +
           '<tr><td>' + SUN + '</td><td>Next</td><td>Go</td></tr><tr><td>' + POWER + '</td><td>Back</td><td>Cancel</td></tr></table></div>',
     wifi: '<div class="scr wifi"><div class="t">WiFi Mode</div>Battery: 84%<br><br>Join WiFi:<br><b>WordStar Mini</b><br>Password: <b>learnwords</b><br>Then visit:<br><b>192.168.4.1</b><br><br>Hold power 2s to exit</div>'
   };
