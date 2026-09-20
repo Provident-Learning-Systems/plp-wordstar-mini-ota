@@ -1,4 +1,4 @@
-version bc9bfad9b495
+version d7b559b4c4a7
 phonics_list.csv 2395 d9906428342ff09d500a0ebad25e1333
 letter_order.txt 511 ccda3b477da9f918ffb404a2e67574e9
 sight_words.txt 669 d6a2ede8b61db3c8e96632790b30bbe6
@@ -125,7 +125,7 @@ audio/word_f.pcm 12136 4d1cf1bf80031f0f0dcde2e0ebc7b7b3
 audio/word_g.pcm 11708 8a7776da8cb96c1d8e496c7157ac2bf7
 audio/word_h.pcm 14650 d4dde785647f9e17653cd3e6a911f034
 audio/word_i.pcm 15716 dc31a58cef6ff84d77b72f88807da69c
-audio/word_j.pcm 14868 777d31854d5355b48d472b4a17e73913
+audio/word_j.pcm 12202 03588ec081221f14f39268eb790776b8
 audio/word_k.pcm 11032 1aec073ad44a268a3aa54b745500308a
 audio/word_l.pcm 12851 85c4c92d2476470baa9c01d66cc22851
 audio/word_m.pcm 15712 e1ee7b72980788e27ad543c2f647a9f4
@@ -137,8 +137,8 @@ audio/word_r.pcm 11529 75aa46cf70d3fb4dd12d10d4b7c809ea
 audio/word_s.pcm 12602 0e5fab7ba9b1b373d78d15f2fb2b0200
 audio/word_t.pcm 13960 bdd995eb1bbb1b49ccef55f453cebf86
 audio/word_u.pcm 11276 f68d0c3da8c16372a9d2196467800260
-audio/word_v.pcm 14683 8dc1d5bb9c4bb149227a530296ff0113
-audio/word_w.pcm 15352 cdbe919ffa1a46e56173cd714845c9ef
+audio/word_v.pcm 19274 0ce44e28dabd10d6721260e0688786a3
+audio/word_w.pcm 15663 341909e5363114fb13995e93717d68e4
 audio/word_x.pcm 14674 4a227b9264c778823c98e7e4f3650378
 audio/word_y.pcm 12575 b9966550648a33460e30bf82f0425edf
 audio/word_z.pcm 13251 57061b273bbb16d8b4469baaa7a3ddef
@@ -155,20 +155,20 @@ pictures/f.pbm 2861 6e7d5318d5de412e93f606c391dc2c41
 pictures/g.pbm 2861 6ac198762c940260084c84a941200525
 pictures/h.pbm 2861 563e79d4dbf9a2744dadd1871f6c500f
 pictures/i.pbm 2861 505556313df6049c1385088614cce594
-pictures/j.pbm 2861 4317edd1e06d1a8113ac47dfd2e150c2
-pictures/k.pbm 2861 f8fbf6123e92367e6273e919ba147dff
+pictures/j.pbm 2861 8c15ee9cb29de63511f0e3c45df7f57c
+pictures/k.pbm 2861 4feb2566ea8c5683bb7532e0379fdb9b
 pictures/l.pbm 2861 b30e9b2adde51258a7507d82b7f55eda
-pictures/m.pbm 2861 691a3929b56cd97df198d348703c06e5
+pictures/m.pbm 2861 b4e509c8954acafa1c227c544c26d4c8
 pictures/n.pbm 2861 94b4f525a866cdce6bce04df6e0fa58a
 pictures/o.pbm 2861 e9f9af5ae8f31080db352dc49281878d
 pictures/p.pbm 2861 dfcf39c0ae4810b00f4a5258d26476ae
 pictures/q.pbm 2861 0413281d468ed3c6d17b05be29fc0995
 pictures/r.pbm 2861 54a892b5583ad6727c56b275bf6fb9d5
-pictures/s.pbm 2861 551fcb03f278046c6f344623fbbe3dc2
+pictures/s.pbm 2861 421522622de7e44a7f0b6fa20fe3b350
 pictures/t.pbm 2861 cffdf69222605591fd67482c3e1c1ff5
-pictures/u.pbm 2861 5d7ab7bcd8ba15b7a3288e4975c690c8
-pictures/v.pbm 2861 dc506cfb0a8edbd5e203443876440fb5
-pictures/w.pbm 2861 8e8b6b8513e346d0a00caa13d85019ad
-pictures/x.pbm 2861 e9f02b2e3192c60c45c301c371e04548
-pictures/y.pbm 2861 f1004d8fcc54c0b882aa6dc859576866
+pictures/u.pbm 2861 d874faadbcab7c45d8e86f411cae4fd1
+pictures/v.pbm 2861 35d074f7326efe421b51b1c009cc9ec4
+pictures/w.pbm 2861 d4ec5878a1b200e3e60d77fcc88b3853
+pictures/x.pbm 2861 a27b917467a29cd8d1cb06b22aba8693
+pictures/y.pbm 2861 a0b600c730ec35c64396cdae2ac86ee9
 pictures/z.pbm 2861 0fd5087d0326c23fb824d9be31418149
